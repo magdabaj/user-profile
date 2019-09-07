@@ -1,9 +1,20 @@
 import * as types from './actionTypes';
 
-export const getUsers = () => ({
-    type: types.FETCH_USER,
+export const setUsers = users => ({
+    type: types.USERS_LOAD_SUCCESS,
+    users
 });
 
-export const throwError = () => ({
-    type: types.PRODUCTS_REQUEST_FAILED,
+export const loadUsers = () => ({
+    type: types.USERS_LOAD
+});
+
+export const setError = error => ({
+    type: types.USERS_LOAD_FAIL,
+    error
+});
+
+export const setUser = user => ({
+    type: types.SET_USER,
+    user
 })

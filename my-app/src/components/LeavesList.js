@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import LeavesListChild from './LeavesListChild';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getUsers} from '../redux/actions/fetchActions';
+import {loadUsers, setUser} from '../redux/actions/fetchActions';
 import PropTypes from 'prop-types';
 
 class LeavesList extends React.Component {
@@ -12,9 +12,7 @@ class LeavesList extends React.Component {
     };
 
     componentDidMount() {
-        if(this.props.users.length === 0) {
-            this.props.getUsers();
-        }
+        this.props.loadUsers();
     }
 
     render () {
@@ -32,7 +30,7 @@ class LeavesList extends React.Component {
                     className={'btn btn-primary'}
                     onClick={() => this.setState({redirectToAddLeavePage: true})}
                 >
-                    Add Course
+                    Add Leave
                 </button>
                 <LeavesListChild users={this.props.users}/>
 
@@ -41,18 +39,22 @@ class LeavesList extends React.Component {
     }
 };
 
-const mapStateToProps = state => {
-    console.log("state", state);
-    return {
-        users: state.user.users
+const mapStateToProps =(state) => (
+ {
+        loading: state.loading,
+        users: state.users
     }
-};
+);
 
 const mapDispatchToProps = dispatch => {
     return {
-        getUsers: () => {
-            dispatch(getUsers());
+        loadUsers: () => {
+            dispatch(loadUsers());
         },
+        setUser: () => {
+            dispatch(setUser())
+        }
+
 
     }
 

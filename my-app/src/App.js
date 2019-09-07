@@ -6,8 +6,10 @@ import HomePage2 from './components/HomePage2';
 import Header from './components/common/Header';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {store} from './redux/store';
 
 function App() {
+    console.log('store', store.getState());
     return (
         <div className={'container-fluid'}>
             <Header/>

@@ -1,6 +1,10 @@
-import user from './userReducer';
+import users from './userReducer';
+import loading from './loadingReducer';
+import newUser from './newUserReducer'
 import {combineReducers} from 'redux';
 
 export default combineReducers({
-    user
+    users,
+    loading,
+    newUser
 })

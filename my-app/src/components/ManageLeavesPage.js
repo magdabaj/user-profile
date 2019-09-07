@@ -1,34 +1,65 @@
-import {getUsers} from "../redux/actions/fetchActions";
+import {loadUsers, setUser} from "../redux/actions/fetchActions";
 import React,{useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import LeaveForm from './LeaveForm';
 import {toast} from 'react-toastify';
 
-const ManageLeavesPage = ({users, user, ...props}) => {
+const ManageLeavesPage = ({users, ...props}) => {
     console.log("ManageC... props", props);
+    console.log('users', users);
+    console.log('user', props.user);
+    const [user, _setUser] = useState({...props.user});
+
+    useEffect(() => {
+        if (users.length === 0) {
+            props.loadUsers();
+            props.setUser();
+        } else {
+            // props.setUser();
+            _setUser({...props.user})
+        }
+    }, [props.user]);
+    function handleChange(event) {
+
+    }
 
 
     return (
         <div>
-            Leave Management App
-            <LeaveForm user={user} />
+            <LeaveForm
+                user={props.user}
+                onChange={handleChange}
+            />
         </div>
     )
 
 };
 
-const mapStateToProps = state => {
+function getLeaveBySlug(users, slug) {
+    return users.find(user => user.login.md5 === slug) || null
+}
+
+const mapStateToProps = (state, ownProps) => {
     console.log("state", state);
+    const slug = ownProps.match.params.slug;
+    const user =
+        slug && state.users.length > 0
+            ? getLeaveBySlug(state.users, slug)
+            : state.newUser;
     return {
-        users: state.user.users,
-        user: state.user.user
+        user,
+        newUser: state.newUser,
+        users: state.users,
     }
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        getUsers: () => {
-            dispatch(getUsers());
+        loadUsers: () => {
+            dispatch(loadUsers());
+        },
+        setUser: () => {
+            dispatch(setUser());
         },
 
     }
