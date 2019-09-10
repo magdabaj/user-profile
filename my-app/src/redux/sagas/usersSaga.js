@@ -6,7 +6,7 @@ import {call, put, takeEvery} from 'redux-saga/effects';
 export function* handleUsersLoad() {
     try{
         const users = yield call(fetchUser);
-        yield put(setUsers(users.results))
+        yield put(setUsers(users))
     } catch (error) {
         yield put(setError(error.toString()))
     }
@@ -16,3 +16,5 @@ export function* handleUsersLoad() {
 export default function* watchUsersLoad() {
     yield takeEvery (types.USERS_LOAD, handleUsersLoad);
 }
+
+

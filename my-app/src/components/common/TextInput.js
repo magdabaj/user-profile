@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TextInput = ({label, value, name, placeholder}) => {
+const TextInput = ({label, value, name, placeholder, onChange}) => {
     let wrapperClass = "form-group";
 
     return (
@@ -14,6 +14,7 @@ const TextInput = ({label, value, name, placeholder}) => {
                     name={name}
                     value={value}
                     placeholder={placeholder}
+                    onChange={onChange}
                 />
             </div>
         </div>

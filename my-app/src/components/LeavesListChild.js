@@ -1,32 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const LeavesListChild = (props) => {
-    const {users, setUser} = props;
+const LeavesListChild = ({users}) => {
 
     return (
         <table className={'table'}>
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Surname</th>
-                <th>From date</th>
-                <th>To date</th>
-                {/*<th>Reason</th>*/}
+                <th>Company</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Website</th>
                 {/*<th>Type</th>*/}
             </tr>
             </thead>
             <tbody>
             {users.map(user => (
-                    <tr key={user.login.md5}>
+                    <tr key={user.id}>
                         <td>
-                            <Link to={"/user/" + user.login.md5} >{user.name.first}</Link>
+                            <Link to={"/user/" + user.email}>{user.name}</Link>
                         </td>
-                        <td>
-                            <Link to={"/user/" + user.login.md5} >{user.name.last}</Link>
-                        </td>
-                        <td>{user.registered.date}</td>
-                        <td>{user.dob.date}</td>
+                        <td>{user.company.name}</td>
+                        <td>{user.email}</td>
+                        <td>{user.phone}</td>
+                        <td>{user.website}</td>
                     </tr>
                 )
 

@@ -2,20 +2,14 @@ import * as types from '../actions/actionTypes';
 
 const initialState = {
     newUser: {
-        id: {
-            name: '',
-            value: null
+        company: {
+            name: ''
         },
-        dob: {
-            date: ''
-        },
-        name: {
-            first: '',
-            last: ''
-        },
-        registered: {
-            date: ''
-        }
+        email: '',
+        id: null,
+        name: '',
+        phone: '',
+        website: '',
     },
 };
 
