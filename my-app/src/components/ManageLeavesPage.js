@@ -1,15 +1,15 @@
-import {loadUsers, setUser, saveUser} from "../redux/actions/fetchActions";
+import {loadUsers, setUser, saveUser, createUserSuccess, updateUserSuccess} from "../redux/actions/fetchActions";
 import React,{useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import LeaveForm from './LeaveForm';
 import PropTypes from 'prop-types';
 import {toast} from 'react-toastify';
 
-const ManageLeavesPage = ({users, history, ...props}) => {
-    console.log("ManageC... props", props);
-    console.log('users', users);
-    console.log('user', props.user);
-    console.log('slug', props.match.params.slug);
+const ManageLeavesPage = ({users, history, saveUser, ...props}) => {
+    // console.log("ManageC... props", props);
+    // console.log('users', users);
+    // console.log('user', props.user);
+    // console.log('slug', props.match.params.slug);
 
     const [_user, _setUser] = useState({...props.user});
 
@@ -31,18 +31,20 @@ const ManageLeavesPage = ({users, history, ...props}) => {
             [name]: value
         }));
     }
-    console.log(_user);
-
+    // console.log('user after handleChange', props.user);
 
     function handleSave(event) {
+        // console.log({_user})
         event.preventDefault();
-        setUser(_user);
-        // then(() => {
-        //     toast.success('User saved.');
-        //     history.push('/leaves')
-        // });
-    }
+        saveUser(_user);
+        toast.success('User saved.');
+        history.push('/leaves');
 
+        console.log(_user);
+        console.log(props);
+
+
+    }
 
     return (
         <div>
@@ -51,6 +53,10 @@ const ManageLeavesPage = ({users, history, ...props}) => {
                 onChange={handleChange}
                 onSave={handleSave}
             />
+            <div>{users.map(user => (
+                <div>{user.name}</div>
+            ))}</div>
+
         </div>
     )
 
@@ -75,11 +81,14 @@ const mapStateToProps = (state, ownProps) => {
         slug && state.users.length > 0
             ? getLeaveBySlug(state.users, slug)
             : state.newUser;
-    console.log({user})
+    // console.log('state user',{user})
+
     return {
         user,
         newUser: state.newUser,
         users: state.users,
+        userSaveSuccess: state.userSaveSuccess,
+        loading: state.loading
     }
 };
 
@@ -91,8 +100,14 @@ const mapDispatchToProps = dispatch => {
         setUser: (user) => {
             dispatch(setUser(user));
         },
-        saveUser: () => {
-            dispatch(saveUser());
+        saveUser: (user) => {
+            dispatch(saveUser(user));
+        },
+        createUserSuccess: (user) => {
+            dispatch(createUserSuccess(user));
+        },
+        updateUserSuccess: (user) => {
+            dispatch(updateUserSuccess(user));
         }
     }
 

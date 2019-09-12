@@ -6,7 +6,9 @@ export function* handleUserSave(id) {
 }
 
 export default function* watchUserSave() {
+    console.log('hello saga');
     while(true) {
+
         const {users} = yield take(types.USERS_LOAD_SUCCESS);
 
         for (let i = 0; i < users.length; i++) {

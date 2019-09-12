@@ -12,7 +12,10 @@ class LeavesList extends React.Component {
     };
 
     componentDidMount() {
-        this.props.loadUsers();
+        if(this.props.users.length === 0) {
+            this.props.loadUsers();
+            console.log('users after mounting', this.props.users)
+        }
     }
 
     render () {
@@ -42,7 +45,7 @@ class LeavesList extends React.Component {
 const mapStateToProps =(state) => (
  {
         loading: state.loading,
-        users: state.users
+        users: state.users,
     }
 );
 
