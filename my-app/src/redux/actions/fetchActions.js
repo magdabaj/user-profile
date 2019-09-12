@@ -24,6 +24,10 @@ export const saveUser = user => ({
         user
 });
 
+export const saveUserSuccess = () => ({
+    type: types.SAVE_USER_SUCCESS
+});
+
 
 export const createUserSuccess = user => ({
     type: types.CREATE_USER_SUCCESS,
@@ -33,5 +37,7 @@ export const createUserSuccess = user => ({
 export const updateUserSuccess = user => ({
     type: types.UPDATE_USER_SUCCESS,
     user
-})
+});
+
+
 

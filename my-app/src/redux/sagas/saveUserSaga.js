@@ -1,8 +1,15 @@
 import * as types from "../actions/actionTypes";
-import {take, fork} from 'redux-saga/effects';
+import {take, fork, put, call} from 'redux-saga/effects';
+import {fetchUserPosts} from "../../api/userApi";
+import {loadUserPosts, loadUserPostsSuccess} from '../actions/postActions';
 
-export function* handleUserSave(id) {
-    console.log('fetching starts for', id);
+export function* handleUserSave(userId) {
+    console.log('fetching starts for', userId);
+    try {
+        yield put(loadUserPosts(userId));
+        const res = yield call(fetchUserPosts, userId);
+        yield put(loadUserPostsSuccess(userId, res))
+    } catch(e) {}
 }
 
 export default function* watchUserSave() {

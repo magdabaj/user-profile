@@ -12,6 +12,15 @@ export const fetchUser = async () => {
     return data;
 };
 
+export const fetchUserPosts = async id => {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`);
+    const data = await response.json();
+    if (response.status >= 400) {
+        throw new Error(data.errors);
+    }
+    return data
+};
+
 // export function fetchUser() {
 //     return fetch(api)
 //         .then(handleResponse)

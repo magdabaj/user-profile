@@ -1,4 +1,5 @@
-import {loadUsers, setUser, saveUser, createUserSuccess, updateUserSuccess} from "../redux/actions/fetchActions";
+import {Redirect} from "react-router";
+import {loadUsers, setUser, saveUser, createUserSuccess, updateUserSuccess, saveUserSuccess} from "../redux/actions/fetchActions";
 import React,{useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import LeaveForm from './LeaveForm';
@@ -6,20 +7,22 @@ import PropTypes from 'prop-types';
 import {toast} from 'react-toastify';
 
 const ManageLeavesPage = ({users, history, saveUser, ...props}) => {
-    // console.log("ManageC... props", props);
-    // console.log('users', users);
-    // console.log('user', props.user);
-    // console.log('slug', props.match.params.slug);
-
+    console.log(props);
+    console.log('user', props.user);
     const [_user, _setUser] = useState({...props.user});
+    const [userId, setUserId] = useState({...props.user.id});
+    const [redirectToPosts, changeRedirectToPosts ] = useState(false);
 
     useEffect(() => {
+        console.log('useEffect');
         if (users.length === 0) {
+            console.log('users length');
             props.loadUsers();
             props.setUser({...props.user});
         } else {
             // props.setUser();
-            _setUser({...props.user})
+            _setUser({...props.user});
+            setUserId({...props.user.id})
         }
     }, [props.user]);
 
@@ -31,33 +34,35 @@ const ManageLeavesPage = ({users, history, saveUser, ...props}) => {
             [name]: value
         }));
     }
-    // console.log('user after handleChange', props.user);
 
     function handleSave(event) {
         // console.log({_user})
         event.preventDefault();
         saveUser(_user);
-        toast.success('User saved.');
-        history.push('/leaves');
 
         console.log(_user);
         console.log(props);
-
-
+   }
+    if(props.userSaveSuccess) {
+        toast.success('User saved.');
+        history.push('/leaves');
+        props.saveUserSuccess();
     }
 
-    return (
-        <div>
-            <LeaveForm
-                user={_user}
-                onChange={handleChange}
-                onSave={handleSave}
-            />
-            <div>{users.map(user => (
-                <div>{user.name}</div>
-            ))}</div>
 
-        </div>
+    return (
+        <>
+            {redirectToPosts && <Redirect to={'/posts/' + props.user.email}/>}
+            <div>
+                <LeaveForm
+                    user={_user}
+                    onChange={handleChange}
+                    onSave={handleSave}
+                />
+                <button className={'btn btn-primary'} onClick={() => changeRedirectToPosts(true)}>See posts</button>
+
+            </div>
+        </>
     )
 
 };
@@ -81,14 +86,14 @@ const mapStateToProps = (state, ownProps) => {
         slug && state.users.length > 0
             ? getLeaveBySlug(state.users, slug)
             : state.newUser;
-    // console.log('state user',{user})
 
     return {
         user,
         newUser: state.newUser,
         users: state.users,
         userSaveSuccess: state.userSaveSuccess,
-        loading: state.loading
+        loading: state.loading,
+        posts: state.posts
     }
 };
 
@@ -102,6 +107,9 @@ const mapDispatchToProps = dispatch => {
         },
         saveUser: (user) => {
             dispatch(saveUser(user));
+        },
+        saveUserSuccess: () => {
+            dispatch(saveUserSuccess());
         },
         createUserSuccess: (user) => {
             dispatch(createUserSuccess(user));

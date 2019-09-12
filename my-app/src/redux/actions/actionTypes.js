@@ -4,6 +4,10 @@ export const USERS_LOAD_FAIL = 'USERS_LOAD_FAIL';
 
 export const SET_USER = 'SET_USER';
 export const SAVE_USER = 'SAVE_USER';
+export const SAVE_USER_SUCCESS = 'SAVE_USER_SUCCESS';
 
 export const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS';
 export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
+
+export const LOAD_POSTS = 'LOAD_POSTS';
+export const LOAD_POSTS_SUCCESS = 'LOAD_POSTS_SUCCESS';

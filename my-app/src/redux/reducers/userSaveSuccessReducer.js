@@ -8,6 +8,8 @@ export default function userSaveSuccessReducer (state = false, action){
             return true;
         case types.UPDATE_USER_SUCCESS:
             return true;
+        case types.SAVE_USER_SUCCESS:
+            return false;
         default:
             return state;
     }
