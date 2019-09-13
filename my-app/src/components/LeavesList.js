@@ -1,10 +1,19 @@
+import {MDBBtn, MDBContainer} from "mdbreact";
 import ManageLeavesPage from "./ManageLeavesPage";
 import React, {useState, useEffect} from 'react';
 import LeavesListChild from './LeavesListChild';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {loadUsers, setUser} from '../redux/actions/fetchActions';
+import {loadUsers, setUser, deleteUser} from '../redux/actions/fetchActions';
 import PropTypes from 'prop-types';
+import {toast} from 'react-toastify';
+
+const buttonStyle = {
+    borderRadius: '50px',
+    margin: 20
+};
+
+
 
 class LeavesList extends React.Component {
     state = {
@@ -18,6 +27,18 @@ class LeavesList extends React.Component {
         }
     }
 
+    handleDeleteUser = async user => {
+        toast.success('User deleted');
+        // try {
+            await this.props.deleteUser(user);
+            console.log(this.props.users)
+        // } catch(error) {
+        //     toast.error('Delete failed. ' + error.message, {autoClose: false})
+        // }
+
+        console.log(this.props.users)
+    };
+
     render () {
         console.log("users", this.props.users);
         console.log(this.props);
@@ -26,18 +47,18 @@ class LeavesList extends React.Component {
         const {users} = this.props;
 
         return (
-            <div>
+            <MDBContainer >
                 {this.state.redirectToAddLeavePage && <Redirect to={'/user'}/>}
-                <button
-                    style={{marginBottom: 20}}
-                    className={'btn btn-primary'}
-                    onClick={() => this.setState({redirectToAddLeavePage: true})}
+                <MDBBtn  style={buttonStyle}
+                         onClick={() => this.setState({redirectToAddLeavePage: true})}
+                         gradient="blue"
                 >
-                    Add Leave
-                </button>
-                <LeavesListChild users={this.props.users}/>
+                    Add leave
+                </MDBBtn>
 
-            </div>
+                <LeavesListChild users={this.props.users} onDeleteClick={this.handleDeleteUser}/>
+
+            </MDBContainer>
         )
     }
 };
@@ -56,6 +77,9 @@ const mapDispatchToProps = dispatch => {
         },
         setUser: () => {
             dispatch(setUser())
+        },
+        deleteUser: (user) => {
+            deleteUser(user)
         }
 
 
@@ -64,7 +88,8 @@ const mapDispatchToProps = dispatch => {
 };
 
 LeavesList.propTypes = {
-    users: PropTypes.array.isRequired
+    users: PropTypes.array.isRequired,
+    deleteUser: PropTypes.func.isRequired
 }
 
 export default connect (mapStateToProps, mapDispatchToProps)(LeavesList);

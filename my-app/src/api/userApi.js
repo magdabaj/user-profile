@@ -21,6 +21,22 @@ export const fetchUserPosts = async id => {
     return data
 };
 
+export function saveUserApi(user) {
+    return fetch(api + (user.id || ''), {
+        method: user.id ? 'PUT' : 'POST',
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(user)
+    })
+        .then(handleResponse)
+        .catch(handleError)
+}
+
+export function deleteUserApi(id) {
+    return fetch( `http://jsonplaceholder.typicode.com/users/${id}`, {method: 'DELETE'})
+        .then(handleResponse)
+        .catch(handleError)
+}
+
 // export function fetchUser() {
 //     return fetch(api)
 //         .then(handleResponse)

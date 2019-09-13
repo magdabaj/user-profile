@@ -1,3 +1,4 @@
+import {MDBContainer} from "mdbreact";
 import PostsContainer from "./components/PostsContainer";
 import React from 'react';
 import {Route, Switch} from "react-router-dom";
@@ -12,7 +13,7 @@ import {store} from './redux/store';
 function App() {
     console.log('store', store.getState());
     return (
-        <div className={'container-fluid'}>
+        <MDBContainer fluid>
             <Header/>
             <Switch>
                 <Route exact path={'/'} component={HomePage2}/>
@@ -22,7 +23,7 @@ function App() {
                 <Route path={'/user'} component={ManageLeavesPage}/>
             </Switch>
             <ToastContainer autoClose={3000} hideProgressBar/>
-        </div>
+        </MDBContainer>
     )
 }
 

@@ -1,3 +1,4 @@
+import {MDBBtn, MDBContainer} from "mdbreact";
 import {Redirect} from "react-router";
 import {loadUsers, setUser, saveUser, createUserSuccess, updateUserSuccess, saveUserSuccess} from "../redux/actions/fetchActions";
 import React,{useEffect, useState} from 'react';
@@ -11,10 +12,9 @@ const ManageLeavesPage = ({users, history, saveUser, ...props}) => {
     console.log('user', props.user);
     const [_user, _setUser] = useState({...props.user});
     const [userId, setUserId] = useState({...props.user.id});
-    const [redirectToPosts, changeRedirectToPosts ] = useState(false);
 
     useEffect(() => {
-        console.log('useEffect');
+        // console.log('useEffect');
         if (users.length === 0) {
             console.log('users length');
             props.loadUsers();
@@ -39,9 +39,6 @@ const ManageLeavesPage = ({users, history, saveUser, ...props}) => {
         // console.log({_user})
         event.preventDefault();
         saveUser(_user);
-
-        console.log(_user);
-        console.log(props);
    }
     if(props.userSaveSuccess) {
         toast.success('User saved.');
@@ -52,16 +49,14 @@ const ManageLeavesPage = ({users, history, saveUser, ...props}) => {
 
     return (
         <>
-            {redirectToPosts && <Redirect to={'/posts/' + props.user.email}/>}
-            <div>
+
+            <MDBContainer>
                 <LeaveForm
                     user={_user}
                     onChange={handleChange}
                     onSave={handleSave}
                 />
-                <button className={'btn btn-primary'} onClick={() => changeRedirectToPosts(true)}>See posts</button>
-
-            </div>
+            </MDBContainer>
         </>
     )
 

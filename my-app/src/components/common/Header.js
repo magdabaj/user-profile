@@ -40,7 +40,7 @@ class Header extends Component {
     render() {
         return (
             <Router>
-                <MDBNavbar color="blue-gradient" dark expand="md">
+                <MDBNavbar color="blue-gradient" dark expand="md" >
                     <MDBNavbarBrand>
                         <strong className="white-text">Leave Management</strong>
                     </MDBNavbarBrand>

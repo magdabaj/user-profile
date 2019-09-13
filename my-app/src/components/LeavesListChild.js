@@ -1,23 +1,31 @@
+import {MDBBtn} from "mdbreact";
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const LeavesListChild = ({users}) => {
+const buttonStyle = {
+    borderRadius: '50px'
+}
+
+const LeavesListChild = ({users, onDeleteClick}) => {
 
     return (
+        <div  style={{overflowY: 'auto'}} >
         <table className={'table'}>
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Company</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Website</th>
-                {/*<th>Type</th>*/}
+                <th/>
+                <th scope={'col'}>Name</th>
+                <th scope={'col'}>Company</th>
+                <th scope={'col'}>Email</th>
+                <th scope={'col'}>Phone</th>
+                <th scope={'col'}>Website</th>
+                <th scope={'col'}/>
             </tr>
             </thead>
             <tbody>
             {users.map(user => (
                     <tr key={user.id}>
+                        <th scope={'row'}/>
                         <td>
                             <Link to={"/user/" + user.email}>{user.name}</Link>
                         </td>
@@ -25,12 +33,14 @@ const LeavesListChild = ({users}) => {
                         <td>{user.email}</td>
                         <td>{user.phone}</td>
                         <td>{user.website}</td>
+                        <td><MDBBtn color="danger" style={buttonStyle} onClick={() => onDeleteClick(user)}>Delete</MDBBtn></td>
                     </tr>
                 )
 
             )}
             </tbody>
         </table>
+        </div>
     )
 };
 

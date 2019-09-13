@@ -40,4 +40,9 @@ export const updateUserSuccess = user => ({
 });
 
 
+export const deleteUser = user => ({
+    type: types.DELETE_USER,
+    user
+})
+
 

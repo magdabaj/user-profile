@@ -1,14 +1,28 @@
-import React from 'react';
+import {MDBBtn, MDBContainer} from "mdbreact";
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import {Redirect} from "react-router";
+import styled from "styled-components";
 import TextInput from './common/TextInput';
 
+const buttonStyle = {
+    borderRadius: '50px'
+};
+
+const Header = styled.div`
+    text-align: center;
+      margin: 0 1em;
+  padding: 0.25em 1em;
+`;
+
+
 const LeaveForm = ({user, onChange, onSave}) => {
+    const [redirectToPosts, changeRedirectToPosts ] = useState(false);
     return (
         <form onSubmit={onSave}>
-            <h2>{user.id ? "Edit" : "Add"} Leave</h2>
-            <button type={'submit'} onSubmit={onSave} className={'btn btn-primary'} >
-                Save
-            </button>
+            {redirectToPosts && <Redirect to={'/posts/' + user.email}/>}
+            <Header className={'h1 indigo-text'}>{user.id ? "Edit" : "Add"} Leave</Header>
+            {/*<h2>{user.id ? "Edit" : "Add"} Leave</h2>*/}
             <TextInput
                 name={'name'}
                 label = 'Name'
@@ -39,6 +53,8 @@ const LeaveForm = ({user, onChange, onSave}) => {
                 value={user.website}
                 onChange={onChange}
             />
+            <MDBBtn  style={buttonStyle} type={'submit'} onSubmit={onSave} gradient="blue">Save</MDBBtn>
+            <MDBBtn  style={buttonStyle} type={'submit'} onClick={() => changeRedirectToPosts(true)} gradient="blue">See posts</MDBBtn>
         </form>
     )
 };
