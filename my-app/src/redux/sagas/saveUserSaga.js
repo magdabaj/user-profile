@@ -18,7 +18,6 @@ export function* handleUserSave(user) {
 export default function* watchUserSave() {
     console.log('hello saga');
     while(true) {
-
         const {user} = yield take(types.SAVE_USER);
         console.log('user', user);
         yield fork(handleUserSave, user);

@@ -1,6 +1,15 @@
 import {MDBBtn, MDBContainer} from "mdbreact";
 import {Redirect} from "react-router";
-import {loadUsers, setUser, saveUser, createUserSuccess, updateUserSuccess, saveUserSuccess} from "../redux/actions/fetchActions";
+import Spinner from './common/Spinner';
+import {
+    loadUsers,
+    setUser,
+    saveUser,
+    createUserSuccess,
+    updateUserSuccess,
+    saveUserSuccess,
+    setError
+} from "../redux/actions/fetchActions";
 import React,{useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import LeaveForm from './LeaveForm';
@@ -12,11 +21,12 @@ const ManageLeavesPage = ({users, history, saveUser, ...props}) => {
     console.log('user', props.user);
     const [_user, _setUser] = useState({...props.user});
     const [userId, setUserId] = useState({...props.user.id});
+    const [errors, setErrors] = useState({});
+    const [saving, setSaving] = useState(false);
 
     useEffect(() => {
         // console.log('useEffect');
         if (users.length === 0) {
-            console.log('users length');
             props.loadUsers();
             props.setUser({...props.user});
         } else {
@@ -35,29 +45,50 @@ const ManageLeavesPage = ({users, history, saveUser, ...props}) => {
         }));
     }
 
+    function formIsValid() {
+        const {email,  name, phone, website} = _user;
+        const errors = {};
+
+        if(!email) errors.email = "Email is required";
+        if(!name) errors.name = "Name is required";
+        if(!phone) errors.phone = 'Phone is required';
+        if(!website) errors.website = 'Website is required';
+
+        setErrors(errors);
+
+        return Object.keys(errors).length === 0;
+    }
+
     function handleSave(event) {
-        // console.log({_user})
         event.preventDefault();
+        if(!formIsValid()) return;
+        setSaving(true);
         saveUser(_user);
-   }
+            if(errors) {
+            setSaving(false);
+            setErrors({onSave: errors.message})
+        };
+
     if(props.userSaveSuccess) {
         toast.success('User saved.');
         history.push('/leaves');
         props.saveUserSuccess();
     }
-
+    }
 
     return (
-        <>
-
+        users.length === 0 || props.user === null ? (
+            <Spinner/>
+            ) : (
             <MDBContainer>
                 <LeaveForm
                     user={_user}
                     onChange={handleChange}
                     onSave={handleSave}
+                    errors={errors}
                 />
             </MDBContainer>
-        </>
+        )
     )
 
 };

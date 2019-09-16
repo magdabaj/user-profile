@@ -25,7 +25,7 @@ export const PostsContainer = ({posts, users, user, loadUsers, setUser, loadingP
     return (
         <MDBContainer>
             <Header className={'h1 indigo-text'}>Posts</Header>
-            {loadingPosts
+            {loadingPosts && posts
                 ? <PostsList posts={posts} id={user.id}/>
                 : <div>Loading...</div>
             }

@@ -21,6 +21,10 @@ export const fetchUserPosts = async id => {
     return data
 };
 
+// export function deleteUserPost(id) {
+//     return fetch()
+// }
+
 export function saveUserApi(user) {
     return fetch(api + (user.id || ''), {
         method: user.id ? 'PUT' : 'POST',
@@ -31,30 +35,22 @@ export function saveUserApi(user) {
         .catch(handleError)
 }
 
+
 export function deleteUserApi(id) {
     return fetch( `http://jsonplaceholder.typicode.com/users/${id}`, {method: 'DELETE'})
         .then(handleResponse)
         .catch(handleError)
 }
 
-// export function fetchUser() {
-//     return fetch(api)
-//         .then(handleResponse)
-//         .catch(handleError)
-// }
-//
-// export function saveUser(user) {
-//     return fetch(api + (user.id || ''), {
-//         method: user.id ? "PUT" : "POST",
-//         headers: { 'content-type': 'application/json'},
-//         body: JSON.stringify(user)
-//     })
-//         .then(handleResponse)
-//         .catch(handleError)
-// }
-//
-// export function deleteUser(userId) {
-//     return fetch(api + userId, {method: 'DELETE'})
-//         .then(handleResponse)
+export function deletePost(id, userId) {
+    return fetch()
+}
+
+// Delete test -> failed
+
+// export function deleteUserApi(id) {
+//     return fetch( `http://jsonplaceholder.typicode.com/users/${id}`, {method: 'DELETE'})
+//         .then(response => response.json())
+//         .then(json => console.log(json))
 //         .catch(handleError)
 // }

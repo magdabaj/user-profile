@@ -16,18 +16,23 @@ const Header = styled.div`
 `;
 
 
-const LeaveForm = ({user, onChange, onSave}) => {
+const LeaveForm = ({user, onChange, onSave, errors = {}}) => {
     const [redirectToPosts, changeRedirectToPosts ] = useState(false);
     return (
         <form onSubmit={onSave}>
             {redirectToPosts && <Redirect to={'/posts/' + user.email}/>}
             <Header className={'h1 indigo-text'}>{user.id ? "Edit" : "Add"} Leave</Header>
-            {/*<h2>{user.id ? "Edit" : "Add"} Leave</h2>*/}
+            {errors.onSave && (
+                <div className={'alert alert-danger'} role={'alert'}>
+                    {errors.onSave}
+                </div>
+            )}
             <TextInput
                 name={'name'}
                 label = 'Name'
                 value={user.name}
                 onChange={onChange}
+                error={errors.name}
             />
             {/*<TextInput*/}
             {/*    name={'company'}*/}
@@ -40,22 +45,28 @@ const LeaveForm = ({user, onChange, onSave}) => {
                 name={'email'}
                 value={user.email}
                 onChange={onChange}
+                error={errors.email}
             />
             <TextInput
                 label={'Phone number'}
                 name={'phone'}
                 value={user.phone}
                 onChange={onChange}
+                error={errors.phone}
             />
             <TextInput
                 label={'Website'}
                 name={'website'}
                 value={user.website}
                 onChange={onChange}
+                error={errors.website}
             />
             <MDBBtn  style={buttonStyle} type={'submit'} onSubmit={onSave} gradient="blue">Save</MDBBtn>
-            <MDBBtn  style={buttonStyle} type={'submit'} onClick={() => changeRedirectToPosts(true)} gradient="blue">See posts</MDBBtn>
-        </form>
+            {user.id
+                ? <MDBBtn  style={buttonStyle} onClick={() => changeRedirectToPosts(true)} gradient="blue">See posts</MDBBtn>
+                : null
+            }
+                </form>
     )
 };
 export default LeaveForm;

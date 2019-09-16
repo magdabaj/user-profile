@@ -17,13 +17,18 @@ export function* handleUserDelete(user) {
     // }
 }
 
-export default function* watchUserSave() {
+export default function* watchUserDelete() {
     console.log('delete saga');
-    while(true) {
         // yield put(deleteUser(user));
+
+        console.log('test while');
         const {user} = yield take(types.DELETE_USER);
         console.log('user', user);
-        yield fork(handleUserDelete, user);
 
-    }
+        for (let i = 0; i < 3; i++) {
+            yield fork(handleUserDelete, user);
+            console.log(user.id)
+        }
+
+
 }
