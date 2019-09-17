@@ -42,9 +42,9 @@ export function deleteUserApi(id) {
         .catch(handleError)
 }
 
-export function deletePost(id, userId) {
-    return fetch()
-}
+// export function deletePost(id, userId) {
+//     return fetch()
+// }
 
 // Delete test -> failed
 

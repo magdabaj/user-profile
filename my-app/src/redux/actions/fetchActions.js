@@ -45,4 +45,12 @@ export const deleteUser = user => ({
     user
 })
 
+export const deleteUserSuccess = userId => ({
+    type: types.DELETE_USER_SUCCESS,
+     userId
+})
+export const deleteUserFinished = () => ({
+    type: types.DELETE_USER_FINISHED
+})
+
 

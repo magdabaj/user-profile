@@ -30,29 +30,23 @@ class LeavesList extends React.Component {
         if(this.props.users.length === 0) {
             this.props.loadUsers();
             this.props.setUser(this.props.user);
-            console.log('users after mounting', this.props.users)
         }
     }
 
     handleDeleteUser = async user => {
-        toast.success('User deleted');
         try {
-            await this.props.deleteUser(user);
-            console.log(this.props.users);
+            this.props.deleteUser(user);
         } catch(error) {
             toast.error('Delete failed. ' + error.message, {autoClose: false})
         }
-
-        console.log(this.props.users);
     };
 
     render () {
-        console.log("users", this.props.users);
-        console.log(this.props);
+        if (this.props.isDeleting) {
+            toast.success('User deleted')
+        }
         //don't do that
         //this.props.getUsers();
-        const {users} = this.props;
-
         return (
             <MDBContainer >
                 {this.state.redirectToAddLeavePage && <Redirect to={'/user'}/>}
@@ -91,6 +85,7 @@ const mapStateToProps =(state, ownProps) => {
         loading: state.loading,
         users: state.users,
         posts: state.posts,
+        isDeleting: state.isDeleting,
         user
     }
 };
@@ -104,7 +99,7 @@ const mapDispatchToProps = dispatch => {
             dispatch(setUser(user))
         },
         deleteUser: (user) => {
-            deleteUser(user)
+            dispatch(deleteUser(user))
         }
 
 

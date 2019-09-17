@@ -1,4 +1,4 @@
-import users from './userReducer';
+import users,{isDeleting} from './userReducer';
 import loading from './loadingReducer';
 import newUser from './newUserReducer'
 import {combineReducers} from 'redux';
@@ -12,5 +12,6 @@ export default combineReducers({
     newUser,
     userSaveSuccess,
     posts,
-    loadingPosts
+    loadingPosts,
+    isDeleting
 })

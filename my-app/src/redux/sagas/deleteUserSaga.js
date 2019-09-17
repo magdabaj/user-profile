@@ -1,34 +1,31 @@
 import * as types from "../actions/actionTypes";
-import {take, fork, takeEvery, put, call} from 'redux-saga/effects';
-import {deleteUserApi, fetchUser} from "../../api/userApi";
-import {updateUserSuccess, createUserSuccess, setUsers, setError} from '../actions/fetchActions';
+import {takeEvery, put, call} from 'redux-saga/effects';
+import {deleteUserApi} from "../../api/userApi";
+import {deleteUserFinished, deleteUserSuccess} from '../actions/fetchActions';
 
-export function* handleUserDelete(user) {
-    console.log('deleting starts for', user.id);
+export function* handleUserDelete(action) {
+    console.log(action)
+    const user = action.user
+    console.warn('deleting starts for', user.id);
     try {
-        yield call(deleteUserApi, user.id);
-    } catch(e) {}
+        console.log(user.id);
+        const deletedData = yield call(deleteUserApi, user.id);
+        if (deletedData) {
+            yield put(deleteUserSuccess(user.id));
+            yield put(deleteUserFinished());
+        }
+    //     todo handle failed
+    } catch (e) {
+        yield put({
+            error: e.message,
+            type: 'DELETE_USER_FAILED',
+            id: user.id,
 
-    // try{
-    //     const users = yield call(fetchUser);
-    //     yield put(setUsers(users))
-    // } catch (error) {
-    //     yield put(setError(error.toString()))
-    // }
+        })
+    }
 }
 
 export default function* watchUserDelete() {
-    console.log('delete saga');
-        // yield put(deleteUser(user));
-
-        console.log('test while');
-        const {user} = yield take(types.DELETE_USER);
-        console.log('user', user);
-
-        for (let i = 0; i < 3; i++) {
-            yield fork(handleUserDelete, user);
-            console.log(user.id)
-        }
-
-
+    console.warn('delete saga');
+    yield takeEvery(types.DELETE_USER, handleUserDelete)
 }

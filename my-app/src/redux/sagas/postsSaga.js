@@ -4,11 +4,10 @@ import {fetchUserPosts} from "../../api/userApi";
 import {loadUserPosts, loadUserPostsSuccess} from '../actions/postActions';
 
 export function* handleUserPosts(userId) {
-    console.log('fetching starts for', userId);
     try {
         yield put(loadUserPosts(userId));
         const res = yield call(fetchUserPosts, userId);
-        yield put(loadUserPostsSuccess(userId, res))
+        yield put(loadUserPostsSuccess(userId, res));
     } catch(e) {}
 }
 

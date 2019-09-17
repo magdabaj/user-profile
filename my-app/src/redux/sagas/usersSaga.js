@@ -12,11 +12,6 @@ export function* handleUsersLoad() {
         yield put(setError(error.toString()))
     }
 
-    // try{
-    //     const users = yield call(fetchUser);
-    //     yield put({type: types.USERS_LOAD_SUCCESS, users: users})
-    // }
-
 }
 
 export default function* watchUsersLoad() {
