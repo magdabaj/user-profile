@@ -4,12 +4,20 @@ import {MDBContainer} from "mdbreact";
 import {loadUsers, setUser} from "../redux/actions/fetchActions";
 import PostsList from './PostsList';
 import styled from 'styled-components';
+import UserProfile from './UserProfile';
+
+
+const Container = styled.div`
+    width: 100%;
+    text-align: center
+`;
 
 const Header = styled.div`
     text-align: center;
-      margin: 0 1em;
-  padding: 0.25em 1em;
+    margin: 0 1em;
+    padding: 1em 0.25em;
 `;
+
 
 export const PostsContainer = ({posts, users, user, loadUsers, setUser, loadingPosts}) => {
     console.log('posts', posts);
@@ -23,13 +31,13 @@ export const PostsContainer = ({posts, users, user, loadUsers, setUser, loadingP
     });
 
     return (
-        <MDBContainer>
-            <Header className={'h1 indigo-text'}>Posts</Header>
+        <Container>
+            <UserProfile user={user}/>
             {loadingPosts && posts
                 ? <PostsList posts={posts} id={user.id}/>
-                : <div>Loading...</div>
+                : <Header className={'h1 indigo-text'}>Loading...</Header>
             }
-        </MDBContainer>
+        </Container>
     )
 };
 

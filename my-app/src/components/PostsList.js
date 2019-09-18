@@ -1,19 +1,22 @@
 import {MDBBtn, MDBMedia} from "mdbreact";
 import React, {useEffect, useState} from 'react';
+import styled from "styled-components";
+
 const hrefStyle = {
     padding: 10,
-}
+    color: '#3f51b5'
+};
+
+const Header = styled.div`
+    text-align: center;
+    margin: 1em;
+    padding: 1em;
+`;
 
 const PostsList = ({id, posts}) => {
-    // console.log('user id', id);
-    // const [userId, setUserId] = useState(id);
-    // useEffect(() => {
-    //     setUserId('user' + id);
-    //     console.log('userId', userId)
-    // });
-    // console.log('userId', userId);
     return (
         <div>
+            <Header className={'h1 indigo-text'}>Posts</Header>
             {/*Part of the condition*/}
             {/*posts['user' + id].length === 0 ||*/}
             { posts['user' + id] === undefined
@@ -32,19 +35,19 @@ const PostsList = ({id, posts}) => {
                             <MDBMedia list className="mt-3" key={post.id}>
                                 <MDBMedia tag={'li'}>
                                     <MDBMedia body>
-                                        <a style={hrefStyle} >
+                                        <a style={hrefStyle}>
                                             Edit post
                                         </a>
-                                        <a style={hrefStyle} >
+                                        <a style={hrefStyle}>
                                             See comments
                                         </a>
-                                        <a style={hrefStyle} >
+                                        <a style={hrefStyle}>
                                             Delete post
                                         </a>
                                     </MDBMedia>
                                 </MDBMedia>
-                            </MDBMedia>
-                        </MDBMedia>
+                             </MDBMedia>
+                         </MDBMedia>
                     ))
                 )
             }

@@ -13,7 +13,7 @@ import {store} from './redux/store';
 function App() {
     console.log('store', store.getState());
     return (
-        <MDBContainer fluid>
+        <MDBContainer fluid style={{maxWidth: 1200}}>
             <Header/>
             <Switch>
                 <Route exact path={'/'} component={HomePage2}/>

@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5382f051-05b8-44fa-a6fd-3805fed2b65b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/my-app/src/components/UserProfile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/api/userApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/api/userApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/components/HomePage2.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/HomePage2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/components/LeavesList.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/LeavesList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/redux/actions/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/actions/actionTypes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/redux/actions/fetchActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/actions/fetchActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/redux/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/reducers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/redux/reducers/userReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/reducers/userReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/redux/sagas/deleteUserSaga.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/sagas/deleteUserSaga.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/redux/sagas/postsSaga.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/sagas/postsSaga.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-app/src/redux/sagas/usersSaga.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/redux/sagas/usersSaga.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/PostsContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/PostsContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-app/src/components/PostsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/src/components/PostsList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my-app/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/my-app/yarn.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,8 +35,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my-app/src/components/ManageLeavesPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="59" column="5" lean-forward="true" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
+            <state relative-caret-position="1003">
+              <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
                 <marker date="1568621043604" expanded="true" signature="3582:3653" ph="..." />
@@ -56,47 +48,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my-app/src/components/LeaveForm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2">
+            <state relative-caret-position="221">
               <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/my-app/src/components/LeavesList.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="44" column="33" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
-              <folding>
-                <element signature="e#0#46#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my-app/src/redux/reducers/userReducer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my-app/src/redux/sagas/deleteUserSaga.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
-              <folding>
-                <element signature="e#0#48#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/my-app/src/redux/sagas/postsSaga.js">
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <caret column="48" lean-forward="true" selection-start-column="48" selection-end-column="48" />
@@ -105,9 +64,45 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/my-app/src/components/PostsContainer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+              <folding>
+                <element signature="e#0#49#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/my-app/src/components/PostsList.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="26">
+              <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+              <folding>
+                <element signature="e#0#42#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/my-app/src/components/UserProfile.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="30" column="35" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#38#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my-app/src/redux/actions/fetchActions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
+            <state relative-caret-position="884">
               <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
             </state>
           </provider>
@@ -152,7 +147,6 @@
         <option value="$PROJECT_DIR$/my-app/src/redux/actions/postActions.js" />
         <option value="$PROJECT_DIR$/my-app/src/redux/reducers/loadPostReducer.js" />
         <option value="$PROJECT_DIR$/my-app/src/redux/reducers/postReducer.js" />
-        <option value="$PROJECT_DIR$/my-app/src/App.js" />
         <option value="$PROJECT_DIR$/my-app/src/index.css" />
         <option value="$PROJECT_DIR$/my-app/src/components/common/Header.js" />
         <option value="$PROJECT_DIR$/my-app/src/redux/sagas/index.js" />
@@ -161,10 +155,8 @@
         <option value="$PROJECT_DIR$/my-app/src/components/common/Spinner.css" />
         <option value="$PROJECT_DIR$/my-app/src/components/common/TextInput.js" />
         <option value="$PROJECT_DIR$/my-app/src/components/ManageLeavesPage.js" />
-        <option value="$PROJECT_DIR$/my-app/src/components/PostsContainer.js" />
         <option value="$PROJECT_DIR$/my-app/src/components/LeaveForm.js" />
         <option value="$PROJECT_DIR$/my-app/src/components/LeavesListChild.js" />
-        <option value="$PROJECT_DIR$/my-app/src/components/PostsList.js" />
         <option value="$PROJECT_DIR$/my-app/src/components/HomePage2.js" />
         <option value="$PROJECT_DIR$/my-app/src/index.js" />
         <option value="$PROJECT_DIR$/my-app/src/redux/sagas/usersSaga.js" />
@@ -176,13 +168,17 @@
         <option value="$PROJECT_DIR$/my-app/src/redux/sagas/deleteUserSaga.js" />
         <option value="$PROJECT_DIR$/my-app/src/redux/reducers/userReducer.js" />
         <option value="$PROJECT_DIR$/my-app/src/components/LeavesList.js" />
+        <option value="$PROJECT_DIR$/my-app/src/components/PostsContainer.js" />
+        <option value="$PROJECT_DIR$/my-app/src/App.js" />
+        <option value="$PROJECT_DIR$/my-app/src/components/UserProfile.js" />
+        <option value="$PROJECT_DIR$/my-app/src/components/PostsList.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-1928" />
     <option name="y" value="224" />
-    <option name="width" value="1936" />
+    <option name="width" value="976" />
     <option name="height" value="1176" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -281,12 +277,17 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../mdb-test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Projekty\react-redux-folder\leave-management-system\my-app\src" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -326,12 +327,14 @@
       <workItem from="1568192278395" duration="7150000" />
       <workItem from="1568264743072" duration="18715000" />
       <workItem from="1568351134983" duration="22459000" />
-      <workItem from="1568538463423" duration="28354000" />
+      <workItem from="1568538463423" duration="29301000" />
+      <workItem from="1568719840580" duration="1955000" />
+      <workItem from="1568722865747" duration="12025000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="187487000" />
+    <option name="totallyTimeSpent" value="202414000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -346,7 +349,7 @@
     <frame x="-1928" y="224" width="1936" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09328358" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17643923" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -355,9 +358,9 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" visible="true" weight="0.32981783" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.22243528" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32981783" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="RNConsole" order="10" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.16299137" />
@@ -459,16 +462,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-app/src/redux/actions/userActions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -523,26 +516,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/src/components/PostsList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="61" lean-forward="true" selection-start-line="26" selection-start-column="61" selection-end-line="26" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/src/components/PostsContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/my-app/src/components/LeavesListChild.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -564,16 +537,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -632,30 +595,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/src/redux/actions/actionTypes.js">
+    <entry file="file://$PROJECT_DIR$/my-app/src/components/LeavesList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="59" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/src/redux/actions/fetchActions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/src/redux/sagas/postsSaga.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="48" lean-forward="true" selection-start-column="48" selection-end-column="48" />
+        <state relative-caret-position="595">
+          <caret line="44" column="33" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/my-app/src/redux/sagas/deleteUserSaga.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
+        <state relative-caret-position="187">
           <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
           <folding>
             <element signature="e#0#48#0" expanded="true" />
@@ -663,17 +615,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/src/redux/reducers/userReducer.js">
+    <entry file="file://$PROJECT_DIR$/my-app/src/redux/sagas/postsSaga.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+        <state>
+          <caret column="48" selection-start-column="48" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-app/src/redux/actions/fetchActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-app/src/redux/actions/actionTypes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="59" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/my-app/src/components/ManageLeavesPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="59" column="5" lean-forward="true" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
+        <state relative-caret-position="1003">
+          <caret line="59" column="5" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
           <folding>
             <element signature="e#0#46#0" expanded="true" />
             <marker date="1568621043604" expanded="true" signature="3582:3653" ph="..." />
@@ -683,17 +649,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/my-app/src/components/LeaveForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2">
+        <state relative-caret-position="221">
           <caret line="18" column="41" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/my-app/src/components/LeavesList.js">
+    <entry file="file://$PROJECT_DIR$/my-app/src/redux/reducers/userReducer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="44" column="33" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
+        <state>
+          <caret column="48" lean-forward="true" selection-start-column="48" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-app/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
           <folding>
-            <element signature="e#0#46#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-app/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-app/src/components/PostsContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-app/src/components/UserProfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="30" column="35" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my-app/src/components/PostsList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
