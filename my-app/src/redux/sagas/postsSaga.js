@@ -1,6 +1,6 @@
 import * as types from "../actions/actionTypes";
 import {take, fork, put, call} from 'redux-saga/effects';
-import {fetchUserPosts} from "../../api/userApi";
+import {fetchUserPosts} from "../../api/postsApi";
 import {loadUserPosts, loadUserPostsSuccess} from '../actions/postActions';
 
 export function* handleUserPosts(userId) {
@@ -21,3 +21,4 @@ export default function* watchUserSave() {
     }
 
 }
+

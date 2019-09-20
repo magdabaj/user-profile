@@ -7,7 +7,10 @@ import fallowIcon from '../images/baseline_reply_black_48dp.png';
 
 const Img = styled.img`
     width: 100%;
-    height: auto
+    max-width: 300px;
+    height: auto;
+    border-radius: 50%;
+    padding: 2em
 `;
 
 const MsgFallowContainer = styled.div`
@@ -19,7 +22,7 @@ const MsgFallowContainer = styled.div`
 const ProfileOptions = styled.div`
     height: 50px;
     width: 50%;
-    cursor: pointer
+    cursor: pointer;
 `;
 
 const Msg = styled.div`
@@ -29,20 +32,22 @@ const Msg = styled.div`
     vertical-align: middle;
     border: 2px 3px 2px 3px solid #3f51b5;
     box-shadow: 2px 2px 1px #3f51b5;
+    border-radius: 40px
 `;
 
 const IconText = styled.div`
     color: grey;
-    font-size: 1.5em;
+    font-size: 1em;
 `;
 
 const UserProfile = ({user}) => {
-    console.log(user);
+    // console.log(user);
     return (
         <div>
             <div>
                 <Img src={bcImg} alt={'profile photo'}/>
                 <MsgFallowContainer >
+                    <div style={{width: '20%'}}/>
                     <ProfileOptions onClick={() => {
                         // todo display messages
                     }}>
@@ -53,6 +58,7 @@ const UserProfile = ({user}) => {
                             <div style={{width: '20%'}}/>
                         </Msg>
                     </ProfileOptions>
+                    <div style={{width: '5%'}}/>
                     <ProfileOptions>
                         <Msg>
                             <div style={{width: '20%'}}/>
@@ -61,6 +67,7 @@ const UserProfile = ({user}) => {
                             <div style={{width: '20%'}}/>
                         </Msg>
                     </ProfileOptions>
+                    <div style={{width: '20%'}}/>
                 </MsgFallowContainer>
             </div>
         </div>

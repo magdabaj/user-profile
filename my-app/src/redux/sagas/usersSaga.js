@@ -15,7 +15,6 @@ export function* handleUsersLoad() {
 }
 
 export default function* watchUsersLoad() {
-    console.log('lol');
     yield takeEvery (types.USERS_LOAD, handleUsersLoad);
 }
 

@@ -41,6 +41,7 @@ class Header extends Component {
         return (
             <Router>
                 <MDBNavbar color="blue-gradient" dark expand="md" >
+                    {/*<div style={{width: '20%'}}/>*/}
                     <MDBNavbarBrand>
                         <strong className="white-text">Leave Management</strong>
                     </MDBNavbarBrand>

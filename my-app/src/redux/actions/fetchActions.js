@@ -28,7 +28,6 @@ export const saveUserSuccess = () => ({
     type: types.SAVE_USER_SUCCESS
 });
 
-
 export const createUserSuccess = user => ({
     type: types.CREATE_USER_SUCCESS,
     user
@@ -39,18 +38,22 @@ export const updateUserSuccess = user => ({
     user
 });
 
-
 export const deleteUser = user => ({
     type: types.DELETE_USER,
     user
-})
+});
 
 export const deleteUserSuccess = userId => ({
     type: types.DELETE_USER_SUCCESS,
      userId
-})
+});
+
 export const deleteUserFinished = () => ({
     type: types.DELETE_USER_FINISHED
-})
+});
 
+export const setActiveUser = (id) => ({
+    type: types.SET_ACTIVE_USER,
+    id
+})
 

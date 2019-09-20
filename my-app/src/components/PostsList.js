@@ -1,5 +1,7 @@
 import {MDBBtn, MDBMedia} from "mdbreact";
 import React, {useEffect, useState} from 'react';
+import {Link} from "react-router-dom";
+import {toast} from "react-toastify";
 import styled from "styled-components";
 
 const hrefStyle = {
@@ -13,41 +15,31 @@ const Header = styled.div`
     padding: 1em;
 `;
 
-const PostsList = ({id, posts}) => {
+const PostsList = ({id, posts, onDeleteClick, activeUser, setActiveUser}) => {
+
+    useEffect(() => {
+        setActiveUser(id)
+    }, []);
+
     return (
         <div>
-            <Header className={'h1 indigo-text'}>Posts</Header>
+            {/*<Header className={'h1 indigo-text'}>Posts</Header>*/}
             {/*Part of the condition*/}
             {/*posts['user' + id].length === 0 ||*/}
             { posts['user' + id] === undefined
-                ?  (<div>User has no posts yet</div>)
+                ?  (<Header className={'h1 indigo-text'}>User has no posts yet</Header>)
                 : (
                     posts['user' + id].map(post => (
-                        <MDBMedia list className="mt-3" key={post.id}>
-                            <MDBMedia tag="li">
-                                <MDBMedia body>
-                                    <MDBMedia heading>
-                                        <h2>{post.title}</h2>
-                                    </MDBMedia>
-                                    {post.body}
-                                </MDBMedia>
-                            </MDBMedia>
-                            <MDBMedia list className="mt-3" key={post.id}>
-                                <MDBMedia tag={'li'}>
-                                    <MDBMedia body>
-                                        <a style={hrefStyle}>
-                                            Edit post
-                                        </a>
-                                        <a style={hrefStyle}>
-                                            See comments
-                                        </a>
-                                        <a style={hrefStyle}>
-                                            Delete post
-                                        </a>
-                                    </MDBMedia>
-                                </MDBMedia>
-                             </MDBMedia>
-                         </MDBMedia>
+                        <div key={post.id} >
+                            <div>{post.title}</div>
+                            <div>{post.body}</div>
+                            <div style={{display: "flex"}}>
+                                <div><Link to={'/editpost/' + post.id}>Edit post</Link></div>
+                                <div>See comments</div>
+                                <div onClick={() => onDeleteClick(post)}>Delete post</div>
+                            </div>
+
+                        </div>
                     ))
                 )
             }
@@ -56,3 +48,34 @@ const PostsList = ({id, posts}) => {
 };
 
 export default PostsList;
+//
+// const MDB = () => (
+// <MDBMedia list className="mt-3" style={{padding: '2em'}}>
+//     <MDBMedia tag="li">
+//         <MDBMedia left href="#">
+//             <MDBMedia object src="https://mdbootstrap.com/img/Photos/Others/placeholder7.jpg" alt="Generic placeholder image" />
+//         </MDBMedia>
+//         <MDBMedia body>
+//             <MDBMedia heading>
+//                 <h2>{post.title}</h2>
+//             </MDBMedia>
+//             {post.body}
+//         </MDBMedia>
+//     </MDBMedia>
+//     <MDBMedia list className="mt-3">
+//         <MDBMedia tag={'li'}>
+//             <MDBMedia body>
+//                 <a style={hrefStyle} onClick={() => setManagePostPage(true)}>
+//                     Edit post
+//                 </a>
+//                 <a style={hrefStyle}>
+//                     See comments
+//                 </a>
+//                 <a style={hrefStyle} onClick={() => onDeleteClick(post)}>
+//                     Delete post
+//                 </a>
+//             </MDBMedia>
+//         </MDBMedia>
+//     </MDBMedia>
+// </MDBMedia>)
+//

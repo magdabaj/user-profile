@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
-import {MDBContainer} from "mdbreact";
-import {loadUsers, setUser} from "../redux/actions/fetchActions";
+import {toast} from "react-toastify";
+import {Redirect} from "react-router-dom";
+import {loadUsers, setUser, setActiveUser} from "../redux/actions/fetchActions";
+import {deletePost} from "../redux/actions/postActions";
 import PostsList from './PostsList';
 import styled from 'styled-components';
 import UserProfile from './UserProfile';
-
+import AddPost from './AddPost';
 
 const Container = styled.div`
     width: 100%;
@@ -19,22 +21,45 @@ const Header = styled.div`
 `;
 
 
-export const PostsContainer = ({posts, users, user, loadUsers, setUser, loadingPosts}) => {
+export const PostsContainer = ({posts, users, user, loadUsers, setUser, loadingPosts, deletePost, deletingPost, setActiveUser, activeUser, newPost}) => {
     console.log('posts', posts);
     console.log(user);
+    console.log(user.id);
+    const [userId, setUserId] = useState({...user.id});
 
     useEffect(() => {
         if(users.length === 0) {
             loadUsers();
-            setUser();
+            setUser(user);
+            if(activeUser===null) {
+                setActiveUser(user.id)
+            }
+        } else {
+            setUser(user)
         }
-    });
+    },[]);
+
+
+    const handleDeletePost = async (post) => {
+        try {
+            deletePost(post);
+        } catch (error) {
+            toast.error('Delete failed. ' + error.message, {autoClose: false})
+        }
+    };
+    if(deletingPost) {
+        toast.success('Post deleted. ');
+    }
 
     return (
+
         <Container>
             <UserProfile user={user}/>
             {loadingPosts && posts
-                ? <PostsList posts={posts} id={user.id}/>
+                ? <div>
+                        <AddPost posts={posts} users={users} post={newPost}/>
+                        <PostsList posts={posts} id={user.id} activeUser={activeUser} setActiveUser={setActiveUser} onDeleteClick={handleDeletePost}/>
+                    </div>
                 : <Header className={'h1 indigo-text'}>Loading...</Header>
             }
         </Container>
@@ -58,7 +83,10 @@ const mapStateToProps = (state, ownProps) => {
         newUser: state.newUser,
         users: state.users,
         posts: state.posts,
-        loadingPosts: state.loadingPosts
+        newPost: state.newPost,
+        loadingPosts: state.loadingPosts,
+        deletingPost: state.deletingPost,
+        activeUser: state.activeUser
     }
 };
 
@@ -69,6 +97,12 @@ const mapDispatchToProps = dispatch => {
         },
         setUser: (user) => {
             dispatch(setUser(user));
+        },
+        deletePost: (post) => {
+            dispatch(deletePost(post))
+        },
+        setActiveUser: id => {
+            dispatch(setActiveUser(id))
         }
     }
 }

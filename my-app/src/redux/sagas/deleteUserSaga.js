@@ -4,8 +4,8 @@ import {deleteUserApi} from "../../api/userApi";
 import {deleteUserFinished, deleteUserSuccess} from '../actions/fetchActions';
 
 export function* handleUserDelete(action) {
-    console.log(action)
-    const user = action.user
+    console.log('user delete action', action);
+    const user = action.user;
     console.warn('deleting starts for', user.id);
     try {
         console.log(user.id);

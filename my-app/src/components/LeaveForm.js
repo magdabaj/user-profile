@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {Redirect} from "react-router";
 import styled from "styled-components";
 import TextInput from './common/TextInput';
+import _ from 'lodash';
 
 const buttonStyle = {
     borderRadius: '50px'
@@ -16,7 +17,7 @@ const Header = styled.div`
 `;
 
 
-const LeaveForm = ({user, onChange, onSave, errors = {}}) => {
+const LeaveForm = ({user, onChange, onCompanyChange, onSave, errors = {}}) => {
     const [redirectToPosts, changeRedirectToPosts ] = useState(false);
     return (
         <form onSubmit={onSave}>
@@ -34,12 +35,13 @@ const LeaveForm = ({user, onChange, onSave, errors = {}}) => {
                 onChange={onChange}
                 error={errors.name}
             />
-            {/*<TextInput*/}
-            {/*    name={'company'}*/}
-            {/*    label = 'Company'*/}
-            {/*    value={user.company}*/}
-            {/*    onChange={onChange}*/}
-            {/*/>*/}
+            <TextInput
+                name={'company'}
+                label = 'Company'
+                value={_.get(user, 'company.name')}
+                error={errors.companyName}
+                onChange={onCompanyChange}
+            />
             <TextInput
                 label={'Email'}
                 name={'email'}

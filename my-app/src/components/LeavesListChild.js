@@ -5,11 +5,10 @@ import {MDBContainer} from "mdbreact";
 
 const buttonStyle = {
     borderRadius: '50px'
-}
+};
 
 const LeavesListChild = ({users, onDeleteClick, user}) => {
     const [seePosts, setSeePosts] = useState(false);
-    console.log(user);
 
     return (
         <>
@@ -32,7 +31,6 @@ const LeavesListChild = ({users, onDeleteClick, user}) => {
             <tbody>
             {users.map(user => (
                 <>
-                    {/*{seePosts &&}*/}
                     <tr key={user.id}>
                         <th scope={'row'}/>
                         <td>

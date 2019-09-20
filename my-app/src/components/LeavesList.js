@@ -74,7 +74,6 @@ function getLeaveBySlug(users, slug) {
 }
 
 const mapStateToProps =(state, ownProps) => {
-    console.log('state', state);
     const slug = ownProps.match.params.slug;
     const user =
         slug && state.users.length > 0

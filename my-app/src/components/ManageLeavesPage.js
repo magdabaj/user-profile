@@ -15,22 +15,21 @@ import {connect} from 'react-redux';
 import LeaveForm from './LeaveForm';
 import PropTypes from 'prop-types';
 import {toast} from 'react-toastify';
+import _ from 'lodash';
 
 const ManageLeavesPage = ({users, history, saveUser, ...props}) => {
-    console.log(props);
-    console.log('user', props.user);
     const [_user, _setUser] = useState({...props.user});
     const [userId, setUserId] = useState({...props.user.id});
     const [errors, setErrors] = useState({});
     const [saving, setSaving] = useState(false);
 
+    console.log(users)
+
     useEffect(() => {
-        // console.log('useEffect');
         if (users.length === 0) {
             props.loadUsers();
             props.setUser({...props.user});
         } else {
-            // props.setUser();
             _setUser({...props.user});
             setUserId({...props.user.id})
         }
@@ -44,14 +43,24 @@ const ManageLeavesPage = ({users, history, saveUser, ...props}) => {
             [name]: value
         }));
     }
+    function handleCompanyChange(event) {
+        const {value} = event.target;
+
+        _setUser(prevUser => ({
+            ...prevUser,
+            company: {name: value}
+        }));
+    }
 
     function formIsValid() {
         const {email,  name, phone, website} = _user;
+        const companyName = _.get(_user, 'company.name');
         const errors = {};
 
         if(!email) errors.email = "Email is required";
         if(!name) errors.name = "Name is required";
         if(!phone) errors.phone = 'Phone is required';
+        if(!companyName) errors.companyName = 'Company name is required';
         if(!website) errors.website = 'Website is required';
 
         setErrors(errors);
@@ -80,10 +89,11 @@ const ManageLeavesPage = ({users, history, saveUser, ...props}) => {
         users.length === 0 || props.user === null ? (
             <Spinner/>
             ) : (
-            <MDBContainer>
+            <MDBContainer style={{maxWidth: 1200}}>
                 <LeaveForm
                     user={_user}
                     onChange={handleChange}
+                    onCompanyChange={handleCompanyChange}
                     onSave={handleSave}
                     errors={errors}
                 />
@@ -105,8 +115,7 @@ function getLeaveBySlug(users, slug) {
     return users.find(user => user.email === slug) || null
 }
 
-const mapStateToProps = (state, ownProps) => {
-    console.log("state", state);
+const mapStateToProps = (state, ownProps) => {;
     const slug = ownProps.match.params.slug;
     const user =
         slug && state.users.length > 0

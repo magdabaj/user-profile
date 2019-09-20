@@ -6,7 +6,7 @@ export async function handleResponse(response) {
         const error = await response.text();
         throw new Error(error);
     }
-    throw new Error("Network response was not ok.");
+    throw new Error(`Network response was not ok. HTTP status ${response.status}`);
 }
 
 // In a real app, would likely call an error logging service.

@@ -18,7 +18,7 @@ export default (state = initialState.newUser , action) => {
         case types.SET_USER:
             return{
                 ...state,
-                newUser: action.user
+                ...action.user
             };
         default:
             return state

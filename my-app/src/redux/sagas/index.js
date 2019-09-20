@@ -2,6 +2,7 @@ import usersSaga from './usersSaga';
 import postsSaga from './postsSaga';
 import saveUserSaga from './saveUserSaga';
 import deleteUserSaga from './deleteUserSaga';
+import deletePostSaga from './deletePostSaga';
 import {all} from 'redux-saga/effects';
 
 export default function * rootSaga() {
@@ -9,6 +10,7 @@ export default function * rootSaga() {
         usersSaga(),
         saveUserSaga(),
         postsSaga(),
-        deleteUserSaga()
+        deleteUserSaga(),
+        deletePostSaga()
     ])
 }
