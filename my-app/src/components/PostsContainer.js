@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {toast} from "react-toastify";
 import {Redirect} from "react-router-dom";
 import {loadUsers, setUser, setActiveUser} from "../redux/actions/fetchActions";
-import {deletePost} from "../redux/actions/postActions";
+import {deletePost, setPost, loadPosts} from "../redux/actions/postActions";
 import PostsList from './PostsList';
 import styled from 'styled-components';
 import UserProfile from './UserProfile';
@@ -21,7 +21,7 @@ const Header = styled.div`
 `;
 
 
-export const PostsContainer = ({posts, users, user, loadUsers, setUser, loadingPosts, deletePost, deletingPost, setActiveUser, activeUser, newPost}) => {
+export const PostsContainer = ({usersError, postError, posts, users, user, loadUsers, setUser, loadingPosts, deletePost, deletingPost, setActiveUser, activeUser, newPost, loadPosts, ...props}) => {
     console.log('posts', posts);
     console.log(user);
     console.log(user.id);
@@ -35,10 +35,18 @@ export const PostsContainer = ({posts, users, user, loadUsers, setUser, loadingP
                 setActiveUser(user.id)
             }
         } else {
-            setUser(user)
+            setUser(user);
+            if(activeUser===null) {
+                setActiveUser(user.id)
+            }
+        }
+
+        if(posts.length === 0 ) {
+            loadPosts();
         }
     },[]);
 
+    console.log('activeUser', activeUser);
 
     const handleDeletePost = async (post) => {
         try {
@@ -57,11 +65,14 @@ export const PostsContainer = ({posts, users, user, loadUsers, setUser, loadingP
             <UserProfile user={user}/>
             {loadingPosts && posts
                 ? <div>
-                        <AddPost posts={posts} users={users} post={newPost}/>
-                        <PostsList posts={posts} id={user.id} activeUser={activeUser} setActiveUser={setActiveUser} onDeleteClick={handleDeletePost}/>
-                    </div>
+                    <AddPost posts={posts} users={users} post={newPost} activeUser={activeUser} setPost={setPost}/>
+                    <PostsList posts={posts} id={user.id} activeUser={activeUser} setActiveUser={setActiveUser}
+                               onDeleteClick={handleDeletePost}/>
+                </div>
                 : <Header className={'h1 indigo-text'}>Loading...</Header>
             }
+            {postError && toast.error('Error occurred: ' + JSON.stringify(postError))}
+            {usersError && toast.error('Error occurred: ' + JSON.stringify(usersError))}
         </Container>
     )
 };
@@ -86,7 +97,9 @@ const mapStateToProps = (state, ownProps) => {
         newPost: state.newPost,
         loadingPosts: state.loadingPosts,
         deletingPost: state.deletingPost,
-        activeUser: state.activeUser
+        activeUser: state.activeUser,
+        postError: state.postError,
+        usersError: state.usersError
     }
 };
 
@@ -103,6 +116,12 @@ const mapDispatchToProps = dispatch => {
         },
         setActiveUser: id => {
             dispatch(setActiveUser(id))
+        },
+        loadPosts: () => {
+            dispatch(loadPosts())
+        },
+        setPost: post => {
+            dispatch(setPost(post))
         }
     }
 }

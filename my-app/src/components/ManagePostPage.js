@@ -2,25 +2,29 @@ import Spinner from "./common/Spinner";
 import React,{useState, useEffect} from 'react';
 import styled from "styled-components";
 import {loadUsers} from "../redux/actions/fetchActions";
-import {setPost} from '../redux/actions/postActions';
+import {setPost, loadPosts} from '../redux/actions/postActions';
 import PostForm from './PostFrom';
 import {connect} from 'react-redux';
 
 
-const ManagePostPage = ({posts, users,  ...props}) => {
+const ManagePostPage = ({posts, users, loadPosts, ...props}) => {
     console.log(props);
     console.log('posts', posts.user1);
-    console.log('post', props.post);
 
     const [_post, _setPost] = useState({...props.post});
 
     useEffect(() => {
         if(users.length === 0 ){
             props.loadUsers();
-            props.setPost({...props.post});
-        } else {
-            props.setPost({...props.post})
         }
+
+        if(posts.length === 0) {
+            loadPosts();
+            props.setPost({...props.post});
+        }
+
+        props.setPost({...props.post});
+        console.log('post', props.post);
     },[props.post]);
 
 
@@ -48,12 +52,11 @@ function getPostBySlug (posts, slug) {
 
 const mapStateToProps = (state, ownProps) => {
     const slug = ownProps.match.params.slug;
-    const userId = 1;
-    console.log(state.posts['user'+userId]);
+    console.log(state.posts);
     parseInt(slug);
      const post =
-         state.loadingPosts
-                ? getPostBySlug(state.posts['user' + userId], slug)
+         state.loadingPosts && slug && state.posts.length > 0
+                ? getPostBySlug(state.posts, slug)
                 : state.newPost;
     console.log('post', post);
     return {
@@ -69,6 +72,9 @@ const mapDispatchToProps = dispatch => {
     return {
         loadUsers: () => {
             dispatch(loadUsers());
+        },
+        loadPosts: () => {
+            dispatch(loadPosts());
         },
         setPost: (post) => {
             dispatch(setPost(post))

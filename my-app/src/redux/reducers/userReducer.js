@@ -3,6 +3,7 @@ import * as types from '../actions/actionTypes';
 const initialState = {
     users: [],
     isDeleting: false,
+    usersError: null
 };
 
 export default (state = initialState.users , action) => {
@@ -18,6 +19,17 @@ export default (state = initialState.users , action) => {
 
         case types.DELETE_USER_SUCCESS:
             return state.filter(user => user.id !== action.userId);
+        default:
+            return state;
+    }
+}
+
+export const usersError = (state = initialState.usersError, action) => {
+    switch (action.type) {
+        case types.USERS_LOAD_FAIL:
+            return action.error;
+        case types.USERS_LOAD_SUCCESS:
+            return null;
         default:
             return state;
     }

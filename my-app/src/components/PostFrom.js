@@ -15,31 +15,35 @@ const buttonStyle = {
     margin: 20
 };
 
-const PostForm = ({post, errors={}}) => {
+const PostForm = ({post, onChange, errors={}, onSave}) => {
     return (
         <div>
-            <form>
-                <Header className={'h1 indigo-text'}>{post.id ? 'Edit' : 'Add'} Post</Header>
+            <form onSubmit={onSave}>
+                <Header className={'h3 indigo-text'}>{post.id ? 'Edit' : 'Add'} Post</Header>
                 <div className={'form-group'}>
                     <TextInput
                         label={'Title'}
                         name={'title'}
                         value={post.title}
-                        error={errors.title}
+                        // error={errors.title}
+                        onChange={onChange}
                     />
                 </div>
                 <div className={'form-group'}>
                     <label>Body</label>
                     <textarea
+                        name={'body'}
                         className={'form-control'}
                         id={post.id}
                         row="3"
                         value={post.body}
+                        onChange={onChange}
                     />
                 </div>
             </form>
             <MDBBtn style={buttonStyle}
-                    gradient="blue"
+                    onSubmit={onSave}
+                    color={'indigo'}
             >
                 Add post
             </MDBBtn>

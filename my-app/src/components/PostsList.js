@@ -23,23 +23,23 @@ const PostsList = ({id, posts, onDeleteClick, activeUser, setActiveUser}) => {
 
     return (
         <div>
-            {/*<Header className={'h1 indigo-text'}>Posts</Header>*/}
-            {/*Part of the condition*/}
-            {/*posts['user' + id].length === 0 ||*/}
-            { posts['user' + id] === undefined
+            { posts === undefined
                 ?  (<Header className={'h1 indigo-text'}>User has no posts yet</Header>)
                 : (
-                    posts['user' + id].map(post => (
-                        <div key={post.id} >
-                            <div>{post.title}</div>
-                            <div>{post.body}</div>
-                            <div style={{display: "flex"}}>
-                                <div><Link to={'/editpost/' + post.id}>Edit post</Link></div>
-                                <div>See comments</div>
-                                <div onClick={() => onDeleteClick(post)}>Delete post</div>
-                            </div>
+                    posts.map(post => (
+                        post.userId === activeUser
+                            ? (
+                                <div key={post.id} >
+                                    <h3>{post.title}</h3>
+                                    <div>{post.body}</div>
+                                    <div style={{display: "flex", padding : 5}}>
+                                        <div><Link to={'/editpost/' + post.id}>Edit post</Link></div>
+                                        <div>See comments</div>
+                                        <div onClick={() => onDeleteClick(post)}>Delete post</div>
+                                    </div>
 
-                        </div>
+                                </div>)
+                            : null
                     ))
                 )
             }

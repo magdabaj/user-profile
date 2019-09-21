@@ -7,10 +7,32 @@ import PostForm from './PostFrom';
 import {connect} from 'react-redux';
 
 
-const AddPost = ({posts, users,  post, ...props}) => {
+const AddPost = ({posts, users,  post, setPost, ...props}) => {
     console.log(props);
     console.log('posts', posts.user1);
     console.log('post', post);
+
+    const [_post, _setPost] = useState({...post});
+
+    useEffect(() => {
+        _setPost({...post})
+        setPost(post)
+    }, [post])
+
+    function handleChange(event) {
+        const {name, value} = event.target;
+
+        _setPost( prevPost => ({
+            ...prevPost,
+            [name] : value
+        }))
+    }
+    console.log(_post);
+
+    function handleSave(event) {
+        event.preventDefault();
+        // savePost(_post);
+    }
 
     return (
         users.length === 0 || props.user === null
@@ -19,7 +41,7 @@ const AddPost = ({posts, users,  post, ...props}) => {
             )
             :(
                 <div>
-                    <PostForm post={post}/>
+                    <PostForm post={_post} onChange={handleChange} onSave={handleSave}/>
                 </div>
             )
     )

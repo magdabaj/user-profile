@@ -1,5 +1,16 @@
 import {handleError, handleResponse} from "./apiUtils";
 
+let api = 'http://jsonplaceholder.typicode.com/posts/';
+
+export const fetchAllPosts = async () => {
+    const response = await fetch(api);
+    const data = await response.json();
+    if(response.status >= 400) {
+        throw new Error(data.errors);
+    }
+    return data;
+};
+
 
 export const fetchUserPosts = async id => {
     const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`);

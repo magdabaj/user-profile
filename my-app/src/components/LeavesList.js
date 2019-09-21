@@ -26,6 +26,7 @@ class LeavesList extends React.Component {
         seePosts: false
     };
 
+
     componentDidMount() {
         if(this.props.users.length === 0) {
             this.props.loadUsers();
@@ -63,7 +64,7 @@ class LeavesList extends React.Component {
                             <LeavesListChild users = {this.props.users} user={this.props.user} onDeleteClick={this.handleDeleteUser}/>
                         </>
                     )}
-
+                {this.props.usersError && toast.error('Error occurred: ' + JSON.stringify(this.props.usersError))}
             </MDBContainer>
         )
     }
@@ -85,7 +86,8 @@ const mapStateToProps =(state, ownProps) => {
         users: state.users,
         posts: state.posts,
         isDeleting: state.isDeleting,
-        user
+        user,
+        usersError: state.usersError
     }
 };
 

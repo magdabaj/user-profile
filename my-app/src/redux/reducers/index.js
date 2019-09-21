@@ -1,9 +1,9 @@
-import users,{isDeleting} from './userReducer';
+import users,{isDeleting, usersError} from './userReducer';
 import loading from './loadingReducer';
 import newUser from './newUserReducer'
 import {combineReducers} from 'redux';
 import userSaveSuccess from './userSaveSuccessReducer';
-import posts,{deletingPost} from './postReducer';
+import posts,{deletingPost, postError} from './postReducer';
 import loadingPosts from './loadPostReducer';
 import newPost from './newPostReducer';
 import activeUser from './activeUserReducer';
@@ -18,5 +18,7 @@ export default combineReducers({
     isDeleting,
     deletingPost,
     newPost,
-    activeUser
+    activeUser,
+    postError,
+    usersError
 })

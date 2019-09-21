@@ -1,15 +1,29 @@
 import * as types from './actionTypes';
 
-export const loadUserPosts = (id) => ({
-    type: types.LOAD_POSTS,
-    id
+export const loadPosts = () => ({
+    type: types.LOAD_POSTS
 });
 
-export const loadUserPostsSuccess = (id, posts) => ({
+export const loadPostsSuccess = posts => ({
     type: types.LOAD_POSTS_SUCCESS,
-    id,
     posts
 });
+
+export const setPostError = error => ({
+    type: types.LOAD_POSTS_FAILED,
+        error
+});
+
+// export const loadUserPosts = (id) => ({
+//     type: types.LOAD_POSTS,
+//     id
+// });
+
+// export const loadUserPostsSuccess = (id, posts) => ({
+//     type: types.LOAD_POSTS_SUCCESS,
+//     id,
+//     posts
+// });
 
 export const deletePost = (post) =>( {
     type: types.DELETE_POST,

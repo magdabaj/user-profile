@@ -1,5 +1,4 @@
 import {MDBBtn, MDBContainer} from "mdbreact";
-import {Redirect} from "react-router";
 import Spinner from './common/Spinner';
 import {
     loadUsers,
@@ -8,7 +7,6 @@ import {
     createUserSuccess,
     updateUserSuccess,
     saveUserSuccess,
-    setError
 } from "../redux/actions/fetchActions";
 import React,{useEffect, useState} from 'react';
 import {connect} from 'react-redux';
@@ -76,7 +74,7 @@ const ManageLeavesPage = ({users, history, saveUser, ...props}) => {
             if(errors) {
             setSaving(false);
             setErrors({onSave: errors.message})
-        };
+        }
 
     if(props.userSaveSuccess) {
         toast.success('User saved.');
@@ -108,14 +106,14 @@ ManageLeavesPage.propTypes = {
     users: PropTypes.array.isRequired,
     loadUsers: PropTypes.func.isRequired,
     saveUser: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired
+    history: PropTypes.object.isRequired,
 };
 
 function getLeaveBySlug(users, slug) {
     return users.find(user => user.email === slug) || null
 }
 
-const mapStateToProps = (state, ownProps) => {;
+const mapStateToProps = (state, ownProps) => {
     const slug = ownProps.match.params.slug;
     const user =
         slug && state.users.length > 0
@@ -128,7 +126,7 @@ const mapStateToProps = (state, ownProps) => {;
         users: state.users,
         userSaveSuccess: state.userSaveSuccess,
         loading: state.loading,
-        posts: state.posts
+        posts: state.posts,
     }
 };
 
