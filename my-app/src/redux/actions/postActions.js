@@ -50,3 +50,23 @@ export const setPost = post => ({
     type: types.SET_POST,
         post
 });
+
+export const savePost = (post, userId)=> ({
+    type: types.SAVE_POST,
+    post
+});
+
+export const createPostSuccess = (post, userId) => ({
+    type: types.CREATE_POST_SUCCESS,
+    post,
+    userId
+});
+
+export const updatePostSuccess = (post, userId)=> ({
+    type: types.UPDATE_POST_SUCCESS,
+    post
+});
+
+export const savePostSuccess = () => ({
+    type: types.SAVE_POST_SUCCESS,
+});

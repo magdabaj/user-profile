@@ -17,11 +17,20 @@ export default (state = initialState.posts, action) => {
             //     ]
             // };
         case types.DELETE_POST_SUCCESS:
-            return state.filter(post => post.id !== action.id)
+            return state.filter(post => post.id !== action.id);
             // const newPosts = state['user' + action.userId].filter(post => post.id !== action.id);
             // return {
             //     ['user' + action.userId] : newPosts
             // };
+        case types.CREATE_POST_SUCCESS:
+            return [
+                ...state,
+                {...action.post}
+            ];
+        case types.UPDATE_POST_SUCCESS:
+            return state.map(post =>
+                post.id === action.post.id ? action.post : post
+            );
         default:
             return state;
     }

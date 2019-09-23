@@ -1,23 +1,18 @@
 import Spinner from "./common/Spinner";
 import React,{useState, useEffect} from 'react';
-import styled from "styled-components";
-import {loadUsers} from "../redux/actions/fetchActions";
-import {setPost} from '../redux/actions/postActions';
 import PostForm from './PostFrom';
-import {connect} from 'react-redux';
 
 
-const AddPost = ({posts, users,  post, setPost, ...props}) => {
+const AddPost = ({posts, users,  post, setPost, savePost, activeUser, ...props}) => {
     console.log(props);
-    console.log('posts', posts.user1);
     console.log('post', post);
 
-    const [_post, _setPost] = useState({...post});
+    const [_post, _setPost] = useState(null);
 
     useEffect(() => {
-        _setPost({...post})
+        _setPost({...post});
         setPost(post)
-    }, [post])
+    }, []);
 
     function handleChange(event) {
         const {name, value} = event.target;
@@ -31,11 +26,11 @@ const AddPost = ({posts, users,  post, setPost, ...props}) => {
 
     function handleSave(event) {
         event.preventDefault();
-        // savePost(_post);
+        savePost(_post, activeUser);
     }
 
     return (
-        users.length === 0 || props.user === null
+        users.length === 0 || props.user === null || !_post
             ? (
                 <Spinner/>
             )

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {toast} from "react-toastify";
 import {Redirect} from "react-router-dom";
 import {loadUsers, setUser, setActiveUser} from "../redux/actions/fetchActions";
-import {deletePost, setPost, loadPosts} from "../redux/actions/postActions";
+import {deletePost, setPost, loadPosts, savePost} from "../redux/actions/postActions";
 import PostsList from './PostsList';
 import styled from 'styled-components';
 import UserProfile from './UserProfile';
@@ -21,7 +21,23 @@ const Header = styled.div`
 `;
 
 
-export const PostsContainer = ({usersError, postError, posts, users, user, loadUsers, setUser, loadingPosts, deletePost, deletingPost, setActiveUser, activeUser, newPost, loadPosts, ...props}) => {
+export const PostsContainer = ({
+                                   usersError,
+                                   postError,
+                                   posts,
+                                   users,
+                                   user,
+                                   loadUsers,
+                                   setUser,
+                                   loadingPosts,
+                                   deletePost,
+                                   deletingPost,
+                                   setActiveUser,
+                                   activeUser,
+                                   newPost,
+                                   loadPosts,
+                                   ...props
+}) => {
     console.log('posts', posts);
     console.log(user);
     console.log(user.id);
@@ -31,7 +47,7 @@ export const PostsContainer = ({usersError, postError, posts, users, user, loadU
         if(users.length === 0) {
             loadUsers();
             setUser(user);
-            if(activeUser===null) {
+            if (activeUser === null) {
                 setActiveUser(user.id)
             }
         } else {
@@ -40,11 +56,11 @@ export const PostsContainer = ({usersError, postError, posts, users, user, loadU
                 setActiveUser(user.id)
             }
         }
-
+        //
         if(posts.length === 0 ) {
             loadPosts();
         }
-    },[]);
+    },[/*users,posts*/]);
 
     console.log('activeUser', activeUser);
 
@@ -65,7 +81,7 @@ export const PostsContainer = ({usersError, postError, posts, users, user, loadU
             <UserProfile user={user}/>
             {loadingPosts && posts
                 ? <div>
-                    <AddPost posts={posts} users={users} post={newPost} activeUser={activeUser} setPost={setPost}/>
+                    <AddPost posts={posts} users={users} post={newPost} activeUser={activeUser} setPost={setPost} savePost={props.savePost} {...props}/>
                     <PostsList posts={posts} id={user.id} activeUser={activeUser} setActiveUser={setActiveUser}
                                onDeleteClick={handleDeletePost}/>
                 </div>
@@ -122,8 +138,11 @@ const mapDispatchToProps = dispatch => {
         },
         setPost: post => {
             dispatch(setPost(post))
+        },
+        savePost: (post, userId) => {
+            dispatch(savePost(post, userId))
         }
     }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostsContainer);

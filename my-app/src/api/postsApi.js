@@ -21,7 +21,7 @@ export const fetchUserPosts = async id => {
     return data
 };
 
-export function saveUserApi(userId, post) {
+export function savePostApi(userId, post) {
     return fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}&&id=${post.id || ''}`, {
         method: post.id ? 'PUT' : 'POST',
         headers: {'content-type': 'application/json'},
