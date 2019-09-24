@@ -1,17 +1,18 @@
+import {toast} from "react-toastify";
 import Spinner from "./common/Spinner";
 import React,{useState, useEffect} from 'react';
 import styled from "styled-components";
-import {loadUsers} from "../redux/actions/fetchActions";
-import {setPost, loadPosts} from '../redux/actions/postActions';
+import {loadUsers, setActiveUser} from "../redux/actions/fetchActions";
+import {setPost, loadPosts, savePost} from '../redux/actions/postActions';
 import PostForm from './PostFrom';
 import {connect} from 'react-redux';
 
 
-const ManagePostPage = ({posts, users, loadPosts, ...props}) => {
+const ManagePostPage = ({posts, post, users, loadPosts, savingPost, history, ...props}) => {
     console.log(props);
-    console.log('posts', posts.user1);
+    console.log('post', post);
 
-    const [_post, _setPost] = useState({...props.post});
+    const [_post, _setPost] = useState({...post});
 
     useEffect(() => {
         if(users.length === 0 ){
@@ -20,40 +21,70 @@ const ManagePostPage = ({posts, users, loadPosts, ...props}) => {
 
         if(posts.length === 0) {
             loadPosts();
-            props.setPost({...props.post});
+            props.setPost({...post});
+            // if(props.activeUser === null) {
+            //     props.setActiveUser(post.userId)
+            // }
+        } else {
+            _setPost({...post});
         }
 
-        props.setPost({...props.post});
-        console.log('post', props.post);
-    },[props.post]);
 
+        // props.setActiveUser(post.userId);
+        console.log('post', post);
+    },[post]);
+
+    console.log(_post);
+
+    function handleChange(event) {
+        const {name, value} = event.target;
+
+        _setPost(prevPost => ({
+            ...prevPost,
+            [name] : value
+        }))
+    }
+
+    function handleSave(event) {
+        event.preventDefault();
+        if(props.activeUser !== undefined) {
+            props.savePost(_post, post.userId);
+        }
+    }
+
+    if(savingPost) {
+        const user = users.find(user => user.id === post.userId);
+        toast.success('Post saved.');
+        history.push(`/posts/${user.email}`);
+    }
 
     return (
-        users.length === 0 || props.user === null
+        users.length === 0 || props.user === null || !_post
             ? (
                 <Spinner/>
             )
             :(
                 <div>
-                    <PostForm post={_post}/>
+                    <PostForm
+                        post={_post}
+                        onChange={handleChange}
+                        onSave={handleSave}
+                    />
                 </div>
             )
     )
 };
 
 function getPostBySlug (posts, slug) {
-    console.log('slug', slug);
-    console.warn('posts', posts);
     if(posts !== undefined){
     if(posts.length > 0) {
-        return posts.find(post => post.id === slug) || null
+        return posts.find(post => post.id === parseFloat(slug)) || null;
     }}
 }
 
 const mapStateToProps = (state, ownProps) => {
     const slug = ownProps.match.params.slug;
     console.log(state.posts);
-    parseInt(slug);
      const post =
          state.loadingPosts && slug && state.posts.length > 0
                 ? getPostBySlug(state.posts, slug)
@@ -65,7 +96,8 @@ const mapStateToProps = (state, ownProps) => {
         posts: state.posts,
         users: state.users,
         loadingPosts: state.loadingPosts,
-        activeUser: state.activeUser
+        activeUser: state.activeUser,
+        savingPost: state.savingPost
 }};
 
 const mapDispatchToProps = dispatch => {
@@ -78,7 +110,13 @@ const mapDispatchToProps = dispatch => {
         },
         setPost: (post) => {
             dispatch(setPost(post))
-        }
+        },
+        savePost: (post, userId) => {
+            dispatch(savePost(post, userId))
+        },
+        // setActiveUser: id => {
+        //     dispatch(setActiveUser(id));
+        // }
     }
 };
 

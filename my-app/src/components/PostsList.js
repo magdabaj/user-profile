@@ -1,13 +1,9 @@
-import {MDBBtn, MDBMedia} from "mdbreact";
+import cupcake from '../images/cupcake-1133146_1920.jpg';
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
-import {toast} from "react-toastify";
+import './PostsList.css';
+import Comments from './Comments';
 import styled from "styled-components";
-
-const hrefStyle = {
-    padding: 10,
-    color: '#3f51b5'
-};
 
 const Header = styled.div`
     text-align: center;
@@ -15,29 +11,70 @@ const Header = styled.div`
     padding: 1em;
 `;
 
+const Img = styled.img`
+    width: 100%;
+    height: auto    
+`;
+
 const PostsList = ({id, posts, onDeleteClick, activeUser, setActiveUser}) => {
+
+    const [comments, seeComments] = useState(false);
+    const [description, setDescription] = useState(false);
 
     useEffect(() => {
         setActiveUser(id)
     }, []);
 
+    const changeVisibility = () => {
+        seeComments(!comments);
+    };
+
+    const seeDescription = () => {
+        setDescription(!description);
+    }
+
     return (
-        <div>
+        <div >
             { posts === undefined
                 ?  (<Header className={'h1 indigo-text'}>User has no posts yet</Header>)
                 : (
                     posts.map(post => (
                         post.userId === activeUser
                             ? (
-                                <div key={post.id} >
-                                    <h3>{post.title}</h3>
-                                    <div>{post.body}</div>
-                                    <div style={{display: "flex", padding : 5}}>
-                                        <div><Link to={'/editpost/' + post.id}>Edit post</Link></div>
-                                        <div>See comments</div>
-                                        <div onClick={() => onDeleteClick(post)}>Delete post</div>
+                                <div style={{paddingBottom: '1em'}}>
+                                <div key={post.id} className={'post-container'}>
+                                    <div className={'h5 indigo-text post-title'}>{post.title}</div>
+                                    <Img src={cupcake}/>
+                                    <div
+                                        className={'post-description-toggle'}
+                                        onClick={() => seeDescription()}
+                                    >
+                                        {!description ? 'See' : 'Toggle'} description
                                     </div>
-
+                                    {description && <div className={'post-body'}>{post.body}</div>}
+                                    <div className={'post-options'}>
+                                        <div className={'h5 indigo-text'} >
+                                            <Link
+                                                to={'/editpost/' + post.id}
+                                            >
+                                                Edit post
+                                            </Link>
+                                        </div>
+                                        <div
+                                            className={'h5 indigo-text'}
+                                             onClick={() => changeVisibility()}
+                                        >
+                                            See comments
+                                        </div>
+                                        <div
+                                            className={'h5 indigo-text'}
+                                            onClick={() => onDeleteClick(post)}
+                                        >
+                                            Delete post
+                                        </div>
+                                    </div>
+                                    {comments && <Comments/>}
+                                </div>
                                 </div>)
                             : null
                     ))

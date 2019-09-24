@@ -31,7 +31,7 @@ const Msg = styled.div`
     justify-content: space-around; 
     vertical-align: middle;
     border: 2px 3px 2px 3px solid #3f51b5;
-    box-shadow: 2px 2px 1px #3f51b5;
+    // box-shadow: 0 0 1em #3f51b5;
     border-radius: 40px
 `;
 

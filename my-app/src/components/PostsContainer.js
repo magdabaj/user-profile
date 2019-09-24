@@ -1,23 +1,41 @@
+import {MDBBtn} from "mdbreact";
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {toast} from "react-toastify";
-import {Redirect} from "react-router-dom";
+import NewPostFrame from './NewPostFrame';
 import {loadUsers, setUser, setActiveUser} from "../redux/actions/fetchActions";
 import {deletePost, setPost, loadPosts, savePost} from "../redux/actions/postActions";
 import PostsList from './PostsList';
 import styled from 'styled-components';
 import UserProfile from './UserProfile';
 import AddPost from './AddPost';
+import './PostsContainer.css';
 
 const Container = styled.div`
     width: 100%;
-    text-align: center
+    text-align: center;
 `;
 
 const Header = styled.div`
     text-align: center;
     margin: 0 1em;
     padding: 1em 0.25em;
+`;
+
+
+const UserFunctionsContainer = styled.div`
+    position: relative;
+text-align: center;
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-around; 
+    border: 1px 1px outset #3f51b5;
+    // box-shadow:  0 0 5px #3f51b5;
+    // vertical-align: middle;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 40px;
+    width: 100%;
 `;
 
 
@@ -42,6 +60,8 @@ export const PostsContainer = ({
     console.log(user);
     console.log(user.id);
     const [userId, setUserId] = useState({...user.id});
+    const [isHidden, setIsHidden] = useState(true);
+    const [opacity, changeOpacity] = useState(1);
 
     useEffect(() => {
         if(users.length === 0) {
@@ -75,21 +95,51 @@ export const PostsContainer = ({
         toast.success('Post deleted. ');
     }
 
-    return (
+    const changeVisibility = () => {
+        setIsHidden(!isHidden);
+        if(isHidden === true) {
+            changeOpacity(0.4);
+        } else {
+            changeOpacity(1);
+        }
+    };
 
-        <Container>
+    if(props.savingPost && !isHidden) {
+        changeVisibility();
+        toast.success('Post saved.')
+    }
+
+    return (
+        <div style={{ position: 'relative'}} >
+            {!isHidden && <AddPost savingPost={props.savingPost} posts={posts} users={users} post={newPost} activeUser={activeUser} setPost={setPost} savePost={props.savePost} {...props}/>}
+        <Container style={{opacity: `${opacity}`}} onClick={!isHidden ? () => changeVisibility() : null}>
             <UserProfile user={user}/>
             {loadingPosts && posts
-                ? <div>
-                    <AddPost posts={posts} users={users} post={newPost} activeUser={activeUser} setPost={setPost} savePost={props.savePost} {...props}/>
-                    <PostsList posts={posts} id={user.id} activeUser={activeUser} setActiveUser={setActiveUser}
-                               onDeleteClick={handleDeletePost}/>
-                </div>
-                : <Header className={'h1 indigo-text'}>Loading...</Header>
+                ? (
+                    <div style={{padding: '1em'}}>
+                        <div  style={{padding: '1em'}}>
+                            {isHidden &&
+                                <div onClick={() => changeVisibility()}>
+                                    <NewPostFrame/>
+                                </div>
+                            }
+                        </div>
+                        <div style={{padding: '1em'}} >
+                            <PostsList
+                                posts={posts}
+                                id={user.id}
+                                activeUser={activeUser}
+                                setActiveUser={setActiveUser}
+                                onDeleteClick={handleDeletePost}
+                            />
+                        </div>
+                    </div>
+                ) : <Header className={'h1 indigo-text'}>Loading...</Header>
             }
             {postError && toast.error('Error occurred: ' + JSON.stringify(postError))}
             {usersError && toast.error('Error occurred: ' + JSON.stringify(usersError))}
         </Container>
+        </div>
     )
 };
 
@@ -115,7 +165,8 @@ const mapStateToProps = (state, ownProps) => {
         deletingPost: state.deletingPost,
         activeUser: state.activeUser,
         postError: state.postError,
-        usersError: state.usersError
+        usersError: state.usersError,
+        savingPost: state.savingPost
     }
 };
 

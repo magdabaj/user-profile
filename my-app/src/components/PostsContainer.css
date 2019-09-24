@@ -1,0 +1,16 @@
+.addPostHidden:hover {
+    color: #3f51b5;
+    border: 2px solid #3f51b5;
+    opacity: 1;
+    box-shadow:  0 0 5px #3f51b5;
+    text-shadow:  0 0 1px #3f51b5;
+}
+.addPostHidden {
+    text-align: center;
+    padding: 1em;
+    cursor: pointer;
+    color: #3f51b5;
+    opacity: 0.6;
+    transition: 0.3s;
+    border: 2px solid #3f51b5;
+}

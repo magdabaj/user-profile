@@ -4,9 +4,9 @@ import styled from "styled-components";
 import TextInput from './common/TextInput';
 
 const Header = styled.div`
-    text-align: center;
-      margin: 0 1em;
-  padding: 0.25em 1em;
+    text-align: left;
+    margin: 0 auto;
+    padding:  0.5em;
 `;
 
 
@@ -18,35 +18,32 @@ const buttonStyle = {
 const PostForm = ({post, onChange, errors={}, onSave}) => {
     return (
         <div>
+        <Header className={'h3 indigo-text'}>{post.id ? 'Edit' : 'Add'} Post</Header>
             <form onSubmit={onSave}>
-                <Header className={'h3 indigo-text'}>{post.id ? 'Edit' : 'Add'} Post</Header>
-                <div className={'form-group'}>
                     <TextInput
-                        label={'Title'}
                         name={'title'}
                         value={post.title}
                         // error={errors.title}
                         onChange={onChange}
                     />
-                </div>
-                <div className={'form-group'}>
-                    <label>Body</label>
                     <textarea
-                        name={'body'}
                         className={'form-control'}
-                        id={post.id}
-                        row="3"
+                        rows="3"
+                        name={'body'}
+                        // error={errors.body}
                         value={post.body}
                         onChange={onChange}
                     />
-                </div>
-            </form>
-            <MDBBtn style={buttonStyle}
-                    onSubmit={onSave}
-                    color={'indigo'}
+            <MDBBtn
+                type={'submit'}
+                style={buttonStyle}
+                onSubmit={onSave}
+                color={'indigo'}
+                disabled={!post.title || !post.body}
             >
-                Add post
+                {!post.id ? 'Add' : 'Edit'} post
             </MDBBtn>
+            </form>
         </div>
     )
 };

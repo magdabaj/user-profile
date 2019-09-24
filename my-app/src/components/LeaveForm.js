@@ -63,9 +63,16 @@ const LeaveForm = ({user, onChange, onCompanyChange, onSave, errors = {}}) => {
                 onChange={onChange}
                 error={errors.website}
             />
-            <MDBBtn  style={buttonStyle} type={'submit'} onSubmit={onSave} gradient="blue">Save</MDBBtn>
+            <MDBBtn
+                style={buttonStyle}
+                type={'submit'}
+                onSubmit={onSave}
+                color={'indigo'}
+            >
+                Save
+            </MDBBtn>
             {user.id
-                ? <MDBBtn  style={buttonStyle} onClick={() => changeRedirectToPosts(true)} gradient="blue">See posts</MDBBtn>
+                ? <MDBBtn  style={buttonStyle} onClick={() => changeRedirectToPosts(true)} color={'indigo'}>See posts</MDBBtn>
                 : null
             }
                 </form>

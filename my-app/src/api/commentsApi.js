@@ -1,8 +1,8 @@
 import {handleError, handleResponse} from "./apiUtils";
 
-let api = 'http://jsonplaceholder.typicode.com/posts/';
+let api = 'http://jsonplaceholder.typicode.com/comments/';
 
-export const fetchAllPosts = async () => {
+export const fetchAllComments = async () => {
     const response = await fetch(api);
     const data = await response.json();
     if(response.status >= 400) {
@@ -12,7 +12,7 @@ export const fetchAllPosts = async () => {
 };
 
 
-export const fetchUserPosts = async id => {
+export const fetchPostsComments = async id => {
     const response = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${id}`);
     const data = await response.json();
     if (response.status >= 400) {
@@ -21,22 +21,23 @@ export const fetchUserPosts = async id => {
     return data
 };
 
-export function savePostApi(post, userId) {
-    return fetch(`http://jsonplaceholder.typicode.com/posts/${post.id || ''}`, {
-        method: post.id ? 'PUT' : 'POST',
+export function saveComment(postId, comment) {
+    return fetch(`http://jsonplaceholder.typicode.com/posts/${comment.id || ''}`, {
+        method: comment.id ? 'PUT' : 'POST',
         headers: {'content-type': 'application/json'},
         body: JSON.stringify({
-            id: post.id,
-            title: post.title,
-            body: post.body,
-            userId: userId
+            id: comment.id,
+            name: comment.name,
+            email: comment.email,
+            body: comment.body,
+            postId: postId
         })
     })
         .then(handleResponse)
         .catch(handleError)
 }
 
-export function deletePostApi(id) {
+export function deleteComment(id) {
     const url = `https://jsonplaceholder.typicode.com/posts/${id}`;
     console.log(url);
     return fetch(url , {method: 'DELETE'})

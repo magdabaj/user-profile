@@ -3,7 +3,7 @@ import loading from './loadingReducer';
 import newUser from './newUserReducer'
 import {combineReducers} from 'redux';
 import userSaveSuccess from './userSaveSuccessReducer';
-import posts,{deletingPost, postError} from './postReducer';
+import posts,{deletingPost, postError, savingPost} from './postReducer';
 import loadingPosts from './loadPostReducer';
 import newPost from './newPostReducer';
 import activeUser from './activeUserReducer';
@@ -20,5 +20,6 @@ export default combineReducers({
     newPost,
     activeUser,
     postError,
-    usersError
+    usersError,
+    savingPost
 })

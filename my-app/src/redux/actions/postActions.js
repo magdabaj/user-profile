@@ -37,7 +37,7 @@ export const deletePostSuccess = (id, userId) => ({
 });
 
 export const deletePostFinished = () => ({
-    type: types.DELETE_USER_FINISHED,
+    type: types.DELETE_POST_FINISHED,
 });
 
 export const deletePostFailed = (error, post) => ({
@@ -48,12 +48,13 @@ export const deletePostFailed = (error, post) => ({
 
 export const setPost = post => ({
     type: types.SET_POST,
-        post
+    post
 });
 
-export const savePost = (post, userId)=> ({
+export const savePost = (post, userId) => ({
     type: types.SAVE_POST,
-    post
+    post,
+    userId
 });
 
 export const createPostSuccess = (post, userId) => ({
@@ -62,7 +63,7 @@ export const createPostSuccess = (post, userId) => ({
     userId
 });
 
-export const updatePostSuccess = (post, userId)=> ({
+export const updatePostSuccess = (post)=> ({
     type: types.UPDATE_POST_SUCCESS,
     post
 });

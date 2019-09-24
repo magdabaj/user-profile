@@ -3,7 +3,8 @@ import * as types from '../actions/actionTypes';
 const initialState = {
     posts: [],
     deletingPost: false,
-    error: null
+    error: null,
+    savingPost: false
 };
 
 export default (state = initialState.posts, action) => {
@@ -31,6 +32,21 @@ export default (state = initialState.posts, action) => {
             return state.map(post =>
                 post.id === action.post.id ? action.post : post
             );
+        default:
+            return state;
+    }
+}
+
+export const savingPost = (state = initialState.savingPost, action) => {
+    switch (action.type) {
+        case types.SAVE_POST:
+            return false;
+        case types.UPDATE_POST_SUCCESS:
+            return true;
+        case types.CREATE_POST_SUCCESS:
+            return true;
+        case types.SAVE_POST_SUCCESS:
+            return false;
         default:
             return state;
     }
