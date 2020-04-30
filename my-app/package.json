@@ -5,7 +5,7 @@
   "dependencies": {
     "@babel/runtime": "^7.6.0",
     "bootstrap": "^4.3.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lodash": "^4.17.15",
     "mdbreact": "^4.20.0",
     "react": "^16.9.0",
